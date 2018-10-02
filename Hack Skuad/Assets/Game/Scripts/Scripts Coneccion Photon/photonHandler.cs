@@ -1,0 +1,52 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class photonHandler : MonoBehaviour {
+
+	[SerializeField]
+	PhotonButtons photonB;
+	public GameObject playerMain;
+	public GameObject plCam;
+	private void Awake()
+	{
+		DontDestroyOnLoad(this.transform);
+	}
+
+	public void createNewRoom()
+	{
+		PhotonNetwork.CreateRoom(photonB.createRoomInput.text, new RoomOptions() { MaxPlayers = 5 }, null);
+	}
+
+	public void joinOrCreateRoom()
+	{
+		RoomOptions rooms = new RoomOptions();
+        rooms.MaxPlayers = 5;
+        PhotonNetwork.JoinOrCreateRoom(photonB.joinRoomInput.text,rooms,TypedLobby.Default);
+	}
+
+	public void moveScene()
+	{
+		PhotonNetwork.LoadLevel("MainGame");
+	}
+
+	private void OnJoinedRoom()
+    {
+        moveScene();
+        Debug.Log("Estamos conectados a una Sala");
+    }
+
+	private void OnFinishedLoading(Scene scene, LoadSceneMode mode)
+	{
+		if(scene.name == "MainGame")
+		{
+			spawPlayer();
+		}
+	}
+
+	private void spawPlayer()
+	{
+		PhotonNetwork.Instantiate(playerMain.name,playerMain.transform.position,playerMain.transform.rotation,0);
+	}
+}
