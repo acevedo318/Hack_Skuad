@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(PhotonConnect))]
 public class photonHandler : MonoBehaviour {
 
 	[SerializeField]
 	PhotonButtons photonB;
 	public GameObject playerMain;
-	public GameObject plCam;
+    [SerializeField]
+    private string identificador;
 	private void Awake()
 	{
+        ConfigurarIdentificador();
+        
 		DontDestroyOnLoad(this.transform);
 	}
 
@@ -49,4 +53,35 @@ public class photonHandler : MonoBehaviour {
 	{
 		PhotonNetwork.Instantiate(playerMain.name,playerMain.transform.position,playerMain.transform.rotation,0);
 	}
+
+    private void ConfigurarIdentificador()
+    {
+        if (PlayerPrefs.GetString("Identificador",null) != null)
+        {
+            identificador = SystemInfo.deviceName.ToString();
+        }
+        
+    }
+
+    public string Identificador
+    {
+        get
+        {
+            return this.identificador;
+        }
+        set
+        {
+            this.identificador = value;
+        }
+    }
+
+    public void AgregarVirus()
+    {
+
+    }
+
+    public void AgregarAntiVirus()
+    {
+
+    }
 }
