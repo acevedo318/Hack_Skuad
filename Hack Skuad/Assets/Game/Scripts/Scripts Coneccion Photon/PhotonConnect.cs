@@ -10,7 +10,7 @@ public class PhotonConnect : MonoBehaviour {
 	private void Awake(){
 		PhotonNetwork.ConnectUsingSettings(versionName);
         this.photonHandler = GetComponent<photonHandler>();
-
+        PantallaSiempreEncendida();
 		Debug.Log("connecting to photon");
 	}
 
@@ -46,6 +46,14 @@ public class PhotonConnect : MonoBehaviour {
 
 		Debug.Log("On Joined Lobby");
 	}
+
+    /// <summary>
+    /// No permite que se apague la pantalla
+    /// </summary>
+    public void PantallaSiempreEncendida()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
 
     private void OnGUI()
     {
