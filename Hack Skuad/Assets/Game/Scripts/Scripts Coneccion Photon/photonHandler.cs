@@ -9,8 +9,9 @@ public class photonHandler : MonoBehaviour {
 	[SerializeField]
 	PhotonButtons photonB;
 	public GameObject playerMain;
-    [SerializeField]
     private string identificador;
+
+    public string nombreDeSala;
 	private void Awake()
 	{
         ConfigurarIdentificador();
@@ -37,7 +38,7 @@ public class photonHandler : MonoBehaviour {
 
 	private void OnJoinedRoom()
     {
-        moveScene();
+        nombreDeSala = PhotonNetwork.room.Name;
         Debug.Log("Estamos conectados a una Sala");
     }
 
