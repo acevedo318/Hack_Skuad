@@ -1,9 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
-public class Dado {
+public class Dado : MonoBehaviour
+{
+
+    [SerializeField]
+    private Sprite[] ladosDado;
+
+    [SerializeField]
+    private SpriteRenderer rend;
+
+    [SerializeField]
+    private Button botonUbicarVirus;
+
+
 
     /// <summary>
     /// Dado para PlayerAntivirus
@@ -16,12 +29,21 @@ public class Dado {
     [SerializeField]
     private byte virus = 0; //
 
-	// Use this for initialization
-	void Start () {
-        
+    // Use this for initialization
+    void Start()
+    {
+        rend.sprite = ladosDado[9];
         Debug.Log("");
-	}
-	
+    }
+
+
+    public IEnumerator rodarDado()
+    {
+        int ladoDadoRandom = 0;
+        ladoDadoRandom = Random.Range(0, 8);
+        rend.sprite = ladosDado[ladoDadoRandom];
+        yield return new WaitForSeconds(0.05f);
+    }
     /// <summary>
     /// Solo los virus tiran dados
     /// </summary>
