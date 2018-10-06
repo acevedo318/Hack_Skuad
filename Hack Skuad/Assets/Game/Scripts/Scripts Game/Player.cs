@@ -6,7 +6,7 @@ using UnityEngine;
 /// La clase Principal del jugador
 /// </summary>
 [System.Serializable]
-public class Player {
+public class Player : MonoBehaviour {
 
 	[SerializeField]
 	private string nombre;
@@ -57,6 +57,5 @@ public class Player {
 		get { return this.turno; }
 		set { this.turno = value; }
 	}
-
 
 }
