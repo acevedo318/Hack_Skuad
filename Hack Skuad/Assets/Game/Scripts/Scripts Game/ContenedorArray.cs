@@ -5,8 +5,11 @@ using UnityEngine;
 public class ContenedorArray : MonoBehaviour {
 
     [SerializeField]
-    private GameObject[] listaArrays;
+    public GameObject[] listaPuntosDeCamino;
 
-    [SerializeField]
-    private GameObject[] listaPuntosDeCamino;
+
+    private void Start()
+    {
+        
+    }
 }
