@@ -6,11 +6,17 @@ using UnityEngine.UI;
 public class PhotonButtons : MonoBehaviour {
 
     
-    public InputField joinRoomInput, createRoomInput;
+    public InputField createRoomInput;
+    public Dropdown dropdownJoinRoom;
 
 public photonHandler pHandler;
 
-	public void OnClickJoinRoom()
+    public void Awake()
+    {
+        CargarSalas();
+    }
+
+    public void OnClickJoinRoom()
     {
        pHandler.joinOrCreateRoom();
     }
@@ -22,6 +28,18 @@ public photonHandler pHandler;
             pHandler.createNewRoom();
         }
         
+    }
+
+    public void CargarSalas()
+    {
+        dropdownJoinRoom.options.Clear();
+        
+        foreach (var item in PhotonNetwork.GetRoomList())
+        {
+            Dropdown.OptionData opcion = new Dropdown.OptionData();
+            opcion.text = item.Name;
+            dropdownJoinRoom.options.Add(opcion);
+        }
     }
 
 

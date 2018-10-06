@@ -16,19 +16,24 @@ public class photonHandler : MonoBehaviour {
 	{
         ConfigurarIdentificador();
         
-		DontDestroyOnLoad(this.transform);
+        
+
+        DontDestroyOnLoad(this.transform);
 	}
 
 	public void createNewRoom()
 	{
-		PhotonNetwork.CreateRoom(photonB.createRoomInput.text, new RoomOptions() { MaxPlayers = 5 }, null);
+		PhotonNetwork.CreateRoom(photonB.createRoomInput.text, new RoomOptions() { MaxPlayers = 5 },TypedLobby.Default);
 	}
 
 	public void joinOrCreateRoom()
 	{
+        PhotonNetwork.JoinRoom(photonB.dropdownJoinRoom.options[photonB.dropdownJoinRoom.value].text);
+        /*
 		RoomOptions rooms = new RoomOptions();
         rooms.MaxPlayers = 5;
-        PhotonNetwork.JoinOrCreateRoom(photonB.joinRoomInput.text,rooms,TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(photonB.dropdownJoinRoom.options[photonB.dropdownJoinRoom.value].text, rooms,TypedLobby.Default);
+        */
 	}
 
 	public void moveScene()
@@ -39,16 +44,26 @@ public class photonHandler : MonoBehaviour {
 	private void OnJoinedRoom()
     {
         nombreDeSala = PhotonNetwork.room.Name;
+        foreach (var item in PhotonNetwork.playerList)
+        {
+            print(item.NickName);
+        }
         Debug.Log("Estamos conectados a una Sala");
     }
 
-	private void OnFinishedLoading(Scene scene, LoadSceneMode mode)
+
+    private void OnFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
 		if(scene.name == "MainGame")
 		{
 			spawPlayer();
 		}
-	}
+        foreach (var item in PhotonNetwork.playerList)
+        {
+            print(item.NickName);
+        }
+
+    }
 
 	private void spawPlayer()
 	{

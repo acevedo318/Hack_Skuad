@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhotonConnect : MonoBehaviour {
+public class PhotonConnect : Photon.MonoBehaviour {
 
 	public string versionName = "0.1";
     private photonHandler photonHandler;
+    private bool joinRoom = false;
 
 	private void Awake(){
-		PhotonNetwork.ConnectUsingSettings(versionName);
+        if (!PhotonNetwork.connected)
+        {
+           PhotonNetwork.ConnectUsingSettings(versionName);
+            Debug.Log("connecting to photon");
+        }
+		
         this.photonHandler = GetComponent<photonHandler>();
         PantallaSiempreEncendida();
-		Debug.Log("connecting to photon");
+		
 	}
 
     /// <summary>
@@ -19,7 +25,8 @@ public class PhotonConnect : MonoBehaviour {
     /// </summary>
 	private void OnConnectedToMaster(){
 		PhotonNetwork.JoinLobby(TypedLobby.Default);
-
+        PhotonNetwork.player.NickName = SystemInfo.deviceName;
+        print(PhotonNetwork.player.NickName);
 		Debug.Log("We are conneted to Master");
 	}
 
@@ -55,17 +62,27 @@ public class PhotonConnect : MonoBehaviour {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
+    private void OnJoinedRoom()
+    {
+        joinRoom = true;
+    }
+
     private void OnGUI()
     {
         GUI.enabled = false;
         GUILayout.TextArea(PhotonNetwork.countOfPlayers.ToString());
         GUILayout.TextArea(PhotonNetwork.connectionState.ToString());
 		GUILayout.TextArea(PhotonNetwork.GetPing().ToString());
+        GUILayout.TextArea("In Room= " + PhotonNetwork.countOfPlayersInRooms);
         //Centro
         GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, /*(Screen.height / 2)*/0, 200, 200));
         GUILayout.TextArea(this.photonHandler.Identificador);
         GUILayout.EndArea();
-        
+        if (joinRoom)
+        {
+            GUILayout.TextArea(PhotonNetwork.room.Name);
+        }
+
         GUI.enabled = true;
        
         
