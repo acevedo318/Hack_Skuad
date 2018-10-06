@@ -16,7 +16,7 @@ public class Dado : MonoBehaviour
     [SerializeField]
     private Button botonUbicarVirus;
 
-
+    int ladoDadoRandom;
 
     /// <summary>
     /// Dado para PlayerAntivirus
@@ -32,29 +32,28 @@ public class Dado : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rend.sprite = ladosDado[9];
-        Debug.Log("");
+        rend.sprite = ladosDado[0];
     }
 
 
-    public IEnumerator rodarDado()
+    public IEnumerator RodarDado()
     {
-        int ladoDadoRandom = 0;
-        ladoDadoRandom = Random.Range(0, 8);
+        ladoDadoRandom = 0;
+        ladoDadoRandom = Random.Range(0, 9);
         rend.sprite = ladosDado[ladoDadoRandom];
         yield return new WaitForSeconds(0.05f);
     }
     /// <summary>
     /// Solo los virus tiran dados
     /// </summary>
-    public void TirarDados()
-    {
-
-    }
+    //public void TirarDados()
+    //{
+    //    StartCoroutine(RodarDado());
+    //}
 
     /// <summary>
-    /// opciones para Dado PlayerAntivirus
-    /// </summary>
+    /// opciones para Dado PlayerAntivirus    /// </summary>
+
     private enum OpcionesAntivirus { Ninguno, Arriba, Abajo, Derecha, Izquierda }
     /*
     public opcionesAntivirus opcionesAntivirus

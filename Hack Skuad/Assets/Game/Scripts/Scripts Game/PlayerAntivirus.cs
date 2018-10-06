@@ -10,38 +10,26 @@ public class PlayerAntivirus : MonoBehaviour
 	private Player player;
     [SerializeField]
     private Dado dado;
+    bool puedeTirarDado = true;
 
     // Use this for initialization
     void Start ()
 	{
-
 
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	
+        
 	}
 
-
+    public void TirarDado()
+    {
+        if (puedeTirarDado)
+        {
+            StartCoroutine(dado.RodarDado());
+        }
+    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
