@@ -6,55 +6,46 @@ using System.Data;
 using System.Text;
 using Mono.Data.SqliteClient;
 
-public class ConexionConsultas : MonoBehaviour {
-	private string connection;
-	private IDbConnection dbcon;
-	private IDbCommand dbcmd;
-	private IDataReader reader;
-	private StringBuilder builder;
+public class ConexionConsultas : MonoBehaviour
+{
+    private string connection;
+    private IDbConnection dbcon;
+    private IDbCommand dbcmd;
+    private IDataReader reader;
+    private StringBuilder builder;
 
+    void Start()
+    {
+        OpenDB();
+    }
 
-	public void OpenDB(string p)
-	{
-		string filepath = Application.persistentDataPath + "/" + p;
-		if(!File.Exists(filepath))
-		{
-			WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/" + p);
-			while(!loadDB.isDone) {}
-			File.WriteAllBytes(filepath, loadDB.bytes);
-		}
+    public void OpenDB()
+    {
+        string conn = "URI=file:" + Application.dataPath + "/Plugins/JuegoDeMesa.db";
+        IDbConnection dbconn;
+        dbconn = (IDbConnection)new SqliteConnection(conn);
+        dbconn.Open();
 
-		connection = "URI=file:" + filepath;
-		Debug.Log("Stablishing connection to: " + connection);
-		dbcon = new SqliteConnection(connection);
-		dbcon.Open();
-	}
+        IDbCommand dbcmd = dbconn.CreateCommand();
+        string sqlQuery = "SELECT * FROM Partida WHERE idPartida = 1";
+        dbcmd.CommandText = sqlQuery;
+        IDataReader reader = dbcmd.ExecuteReader();
 
+        while (reader.Read())
+        {
+            int id = reader.GetInt32(0);
 
-	public void CloseDB(){
-		reader.Close(); 
-  	 	reader = null;
-   		dbcmd.Dispose();
-   		dbcmd = null;
-   		dbcon.Close();
-   		dbcon = null;
-	}
+            Debug.Log("id= " + id);
+        }
 
+        reader.Close();
+        reader = null;
 
-	public string retornarUsuarioPorId(int id){ 
-		string consulta,usuario="";
-		consulta = "SELECT * FROM Usuarios WHERE idUsuario = "+id+"";	
-		dbcmd = dbcon.CreateCommand();
-		dbcmd.CommandText = consulta;
-		reader = dbcmd.ExecuteReader();
+        dbcmd.Dispose();
+        dbcmd = null;
 
-
-		while(reader.Read()){
-			
-			usuario = reader.GetString (1);
-		}
-
-		return usuario;
-	}
+        dbconn.Close();
+        dbconn = null;
+    }
 
 }
