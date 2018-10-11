@@ -17,7 +17,7 @@ public class ControladorCarta : MonoBehaviour
     public ContenedorArray camino4;
 
     //Variable para definir la velocidad de movimiento de cada carta al momento de barajarse
-    private float velocidadMovCarta = 2f;
+    private float velocidadMovCarta = 2.5f;
 
     void Start()
     {
@@ -27,7 +27,7 @@ public class ControladorCarta : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Invoke("MoverTodasCartas", 2);
+        
     }
 
     // Método para barajar o mezclar todas las 40 cartas dentro del vector de cartas "listaCartas"
@@ -49,8 +49,9 @@ public class ControladorCarta : MonoBehaviour
     public void MoverTodasCartas()
     {       
         int Cont = 0;
+        
         for (int i = 0; i < 10; i++)
-        {
+        {          
             // Cada carta se ordena en forma vertical en los 4 vectores que simulan los carriles de juego
             listaCartas[Cont].transform.position = Vector2.MoveTowards(listaCartas[Cont].transform.position, camino1.listaPuntosDeCamino[i].transform.position, (Time.deltaTime * velocidadMovCarta));
             Cont++;
