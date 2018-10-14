@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// La clase del jugador Antivirus
@@ -8,6 +9,7 @@ public class PlayerAntivirus : MonoBehaviour
 {
     [SerializeField]
     private Player player;
+
     [SerializeField]
     private Dado dadoColumna, dadoFila;
     bool puedeTirarDado = true;
@@ -27,18 +29,16 @@ public class PlayerAntivirus : MonoBehaviour
     // Variable de tipo SpriteRenderer para poder cambiar los colores del sprite del jugador Antivirus
     private SpriteRenderer spriteRendererAntiV;
 
-    // Variables de tipo color, para la creación de 2 colores, 1 con transparencia total y otro normal
-    private Color colorTransparente;
-    private Color colorNormal;
+    [SerializeField]
+    private GameObject botonDado;
 
+    List<GameObject> listaBotonDados;
     // Use this for initialization
     void Start()
     {
         spriteRendererAntiV = this.GetComponent<SpriteRenderer>(); // Se obtiene el componente Spriterenderer del player Antivirus
-        colorTransparente = new Color(255, 255, 255, 0); // Se crea el color transparente
-        colorNormal = new Color(255, 255, 255); // Se crea el color normal
         ubicacionCorrecta = false; // Se inicializa la posición del Antivirus como false
-
+        
     }
 
     // Update is called once per frame
@@ -109,4 +109,17 @@ public class PlayerAntivirus : MonoBehaviour
         }
 
     }
+
+    public void InvocarDadosPosicionamiento()
+    {
+        Transform contenedorDados = GameObject.Find("ContenedorDadosAntivirus").GetComponent<Transform>();
+        GameObject dadoDefaultAnti;
+        listaBotonDados = new List<GameObject>();
+        for (int i = 0; i < 4; i++)
+        {
+            dadoDefaultAnti = Instantiate(botonDado, contenedorDados);
+            listaBotonDados.Add(dadoDefaultAnti);
+        }
+    }
+
 }

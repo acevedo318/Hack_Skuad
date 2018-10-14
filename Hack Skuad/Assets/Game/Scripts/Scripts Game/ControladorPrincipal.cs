@@ -74,15 +74,12 @@ public class ControladorPrincipal : MonoBehaviour {
             playerAntivirus.UbicarAntivirus(fila, columna);
             yield return new WaitForSeconds(0.001f);
         } while (!playerAntivirus.ubicacionCorrecta);
-
-        
-
+        playerAntivirus.InvocarDadosPosicionamiento();
     }
     
     internal void SetUbicar(int fila, int columna)
     {
         StartCoroutine(Ubicar(fila, columna));
-        print("Funciona");
 
     }
 }
