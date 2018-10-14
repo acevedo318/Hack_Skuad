@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-[System.Serializable]
 public class Dado : MonoBehaviour
 {
 
@@ -11,56 +11,75 @@ public class Dado : MonoBehaviour
     private Sprite[] ladosDado;
 
     [SerializeField]
-    private SpriteRenderer rend;
+    private SpriteRenderer rendFila;
 
     [SerializeField]
-    private Button botonUbicarVirus;
+    private SpriteRenderer rendColumna;
 
-    int ladoDadoRandom;
+    [SerializeField]
+    private TextMeshProUGUI textoUbicacionColumna;
 
-    /// <summary>
-    /// Dado para PlayerAntivirus
-    /// </summary>
     [SerializeField]
-    OpcionesAntivirus opcionesAntivirus;
-    /// <summary>
-    /// Dado para PlayerVirus
-    /// </summary>
+    private TextMeshProUGUI textoUbicacionFila;
+
     [SerializeField]
-    private byte virus = 0; //
+    private GameObject panelUbicacionAntivirus;
+
+    private PlayerAntivirus antivirus;
+
+    private ControladorPrincipal control;
+
+    int resultadoModuloFila;
+    public int ladoDadoRandomFila;
+    public int ladoDadoRandomColumna;
+
 
     // Use this for initialization
     void Start()
     {
-        rend.sprite = ladosDado[0];
+        rendFila.sprite = ladosDado[0];
+        rendColumna.sprite = ladosDado[0];
+        ladoDadoRandomFila = 0;
+        ladoDadoRandomColumna = 0;
+        antivirus = GameObject.FindObjectOfType<PlayerAntivirus>().GetComponent<PlayerAntivirus>();
+        control = GameObject.FindObjectOfType<ControladorPrincipal>().GetComponent<ControladorPrincipal>();
     }
 
-
-    public IEnumerator RodarDado()
+    public IEnumerator RodarDadoFila()
     {
-        ladoDadoRandom = 0;
-        ladoDadoRandom = Random.Range(0, 9);
-        rend.sprite = ladosDado[ladoDadoRandom];
-        yield return new WaitForSeconds(0.05f);
+        for (int i = 0; i < 10; i++)
+        {
+            ladoDadoRandomFila = Random.Range(0, 4);
+            rendFila.sprite = ladosDado[ladoDadoRandomFila];
+            yield return new WaitForSeconds(0.1f);
+        }
+        setTextoFila();
+        StartCoroutine(RodarDadoColumna());
+        yield return new WaitForSeconds(3f);
+        panelUbicacionAntivirus.SetActive(false);
+        control.SetUbicar(ladoDadoRandomFila, ladoDadoRandomColumna);   
     }
-    /// <summary>
-    /// Solo los virus tiran dados
-    /// </summary>
-    //public void TirarDados()
-    //{
-    //    StartCoroutine(RodarDado());
-    //}
 
-    /// <summary>
-    /// opciones para Dado PlayerAntivirus    /// </summary>
-
-    private enum OpcionesAntivirus { Ninguno, Arriba, Abajo, Derecha, Izquierda }
-    /*
-    public opcionesAntivirus opcionesAntivirus
+    public IEnumerator RodarDadoColumna()
     {
-        get { return this.opcionesAntivirus; }
-        set { this.nombre = value; }
+        for (int i = 0; i < 10; i++)
+        {
+            ladoDadoRandomColumna = Random.Range(0, 9);
+            rendColumna.sprite = ladosDado[ladoDadoRandomColumna];
+            yield return new WaitForSeconds(0.1f);
+        }
+        setTextoColumna();
     }
-    */
 
+    public void setTextoFila()
+    {
+        textoUbicacionFila.text = "Fila: " + (ladoDadoRandomFila+1);
+    }
+
+    public void setTextoColumna()
+    {
+        textoUbicacionColumna.text = "Columna: " + (ladoDadoRandomColumna+1);
+    }
+
+    
 }

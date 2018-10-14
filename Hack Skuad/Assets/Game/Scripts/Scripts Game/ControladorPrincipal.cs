@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,16 +18,20 @@ public class ControladorPrincipal : MonoBehaviour {
     [SerializeField]
     private PlayerAntivirus playerAntivirus;
 
+
     private bool esActivo;
 
     private int tiempo = 0;
 
-	// Use this for initialization
-	void Start ()
+
+
+    // Use this for initialization
+    void Start ()
     {
         esActivo = true;
         ActivarPanel(panelInicioJuego);
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -44,7 +49,6 @@ public class ControladorPrincipal : MonoBehaviour {
             tiempo++;
             if (tiempo == 220)
             {
-                Debug.Log("Acá esta entrando???");
                 esActivo = true;
                 ActivarPanel(panelUbicacionAntivirus);
             }
@@ -52,7 +56,7 @@ public class ControladorPrincipal : MonoBehaviour {
 
         if (panelUbicacionAntivirus == false)
         {
-
+            
         }
         
 	}
@@ -60,5 +64,25 @@ public class ControladorPrincipal : MonoBehaviour {
     void ActivarPanel(GameObject panel)
     {
         panel.SetActive(esActivo);
+    }
+
+    
+    public IEnumerator Ubicar(int fila, int columna)
+    {
+        do
+        {
+            playerAntivirus.UbicarAntivirus(fila, columna);
+            yield return new WaitForSeconds(0.001f);
+        } while (!playerAntivirus.ubicacionCorrecta);
+
+        
+
+    }
+    
+    internal void SetUbicar(int fila, int columna)
+    {
+        StartCoroutine(Ubicar(fila, columna));
+        print("Funciona");
+
     }
 }
