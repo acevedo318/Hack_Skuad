@@ -29,16 +29,12 @@ public class photonHandler : MonoBehaviour {
 	public void joinOrCreateRoom()
 	{
         PhotonNetwork.JoinRoom(photonB.dropdownJoinRoom.options[photonB.dropdownJoinRoom.value].text);
-        /*
-		RoomOptions rooms = new RoomOptions();
-        rooms.MaxPlayers = 5;
-        PhotonNetwork.JoinOrCreateRoom(photonB.dropdownJoinRoom.options[photonB.dropdownJoinRoom.value].text, rooms,TypedLobby.Default);
-        */
+        
 	}
 
 	public void moveScene()
 	{
-		PhotonNetwork.LoadLevel("MainGame");
+		PhotonNetwork.LoadLevel("Test");
 	}
 
 	private void OnJoinedRoom()
@@ -54,7 +50,7 @@ public class photonHandler : MonoBehaviour {
 
     private void OnFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
-		if(scene.name == "MainGame")
+		if(scene.name == "Test")
 		{
 			spawPlayer();
 		}
