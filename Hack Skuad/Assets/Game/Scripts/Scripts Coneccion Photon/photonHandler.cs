@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 [RequireComponent(typeof(PhotonConnect))]
 public class photonHandler : MonoBehaviour {
@@ -16,6 +17,8 @@ public class photonHandler : MonoBehaviour {
     /// Contiene los jugadores
     /// </summary>
     public GameObject contentPlayerUI;
+    [SerializeField]
+    private GameObject textoSala;
 
     public string nombreDeSala;
 	private void Awake()
@@ -47,6 +50,7 @@ public class photonHandler : MonoBehaviour {
     {
         nombreDeSala = PhotonNetwork.room.Name;
         Debug.Log("Estamos conectados a una Sala");
+        textoSala.GetComponent<TextMeshProUGUI>().text = "Sala: \n" + nombreDeSala;
     }
 
 
