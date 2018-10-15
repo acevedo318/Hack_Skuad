@@ -7979,6 +7979,7 @@ MonoBehaviour:
   photonB: {fileID: 1530049029}
   playerMain: {fileID: 1612174343586938, guid: db802c733ace89a4db10ec5f56eb39dc, type: 2}
   contentPlayerUI: {fileID: 1795106626}
+  textoSala: {fileID: 655342652}
   nombreDeSala: 
 --- !u!114 &1530049034
 MonoBehaviour:
