@@ -25,7 +25,6 @@ public class Dado : MonoBehaviour
     [SerializeField]
     private GameObject panelUbicacionAntivirus;
 
-    private PlayerAntivirus antivirus;
 
     private ControladorPrincipal control;
 
@@ -41,7 +40,6 @@ public class Dado : MonoBehaviour
         rendColumna.sprite = ladosDado[0];
         ladoDadoRandomFila = 0;
         ladoDadoRandomColumna = 0;
-        antivirus = GameObject.FindObjectOfType<PlayerAntivirus>().GetComponent<PlayerAntivirus>();
         control = GameObject.FindObjectOfType<ControladorPrincipal>().GetComponent<ControladorPrincipal>();
     }
 

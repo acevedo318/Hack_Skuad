@@ -18,7 +18,6 @@ public class DadoAntivirus : MonoBehaviour
     void Start ()
     {
         i = 0;
-        //imagenDado = GameObject.Find("DadoFlechaAntivirus").GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
@@ -28,8 +27,9 @@ public class DadoAntivirus : MonoBehaviour
 
     public void CambiarLadoDado()
     {
+        Debug.Log("Valor de i: "+i);
         i++;
-        while (i <= 3) 
+        if (i <= 3) 
         {
             imagenDado.sprite = ladosDado[i];          
         }

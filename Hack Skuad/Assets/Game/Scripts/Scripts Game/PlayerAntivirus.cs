@@ -26,9 +26,6 @@ public class PlayerAntivirus : MonoBehaviour
     // Variable booleana para validar que la ubicacion del player Antivirus, sea correcta en el mundo del juego
     public bool ubicacionCorrecta { get; set; }
 
-    // Variable de tipo SpriteRenderer para poder cambiar los colores del sprite del jugador Antivirus
-    private SpriteRenderer spriteRendererAntiV;
-
     [SerializeField]
     private GameObject botonDado;
 
@@ -36,7 +33,6 @@ public class PlayerAntivirus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        spriteRendererAntiV = this.GetComponent<SpriteRenderer>(); // Se obtiene el componente Spriterenderer del player Antivirus
         ubicacionCorrecta = false; // Se inicializa la posición del Antivirus como false
         
     }
