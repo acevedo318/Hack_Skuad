@@ -27,8 +27,8 @@ public class PhotonConnect : Photon.MonoBehaviour {
 	private void OnConnectedToMaster(){
 		PhotonNetwork.JoinLobby(TypedLobby.Default);
         PhotonNetwork.player.NickName = SystemInfo.deviceName;
-        print(PhotonNetwork.player.NickName);
-		Debug.Log("We are conneted to Master");
+        //print(PhotonNetwork.player.NickName);
+		//Debug.Log("We are conneted to Master");
 	}
 
     /// <summary>

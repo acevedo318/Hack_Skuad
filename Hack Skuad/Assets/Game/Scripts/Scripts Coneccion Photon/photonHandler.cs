@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 [RequireComponent(typeof(PhotonConnect))]
 public class photonHandler : MonoBehaviour {
@@ -10,6 +12,10 @@ public class photonHandler : MonoBehaviour {
 	PhotonButtons photonB;
 	public GameObject playerMain;
     private string identificador;
+    /// <summary>
+    /// Contiene los jugadores
+    /// </summary>
+    public GameObject contentPlayerUI;
 
     public string nombreDeSala;
 	private void Awake()
@@ -40,10 +46,6 @@ public class photonHandler : MonoBehaviour {
 	private void OnJoinedRoom()
     {
         nombreDeSala = PhotonNetwork.room.Name;
-        foreach (var item in PhotonNetwork.playerList)
-        {
-            print(item.NickName);
-        }
         Debug.Log("Estamos conectados a una Sala");
     }
 
@@ -59,6 +61,64 @@ public class photonHandler : MonoBehaviour {
             print(item.NickName);
         }
 
+    }
+
+    public void ListarPlayers()
+    {
+        if (SceneManager.GetActiveScene().name == "UIGame")
+        {
+            
+
+            StartCoroutine(GenerarLista());
+        }
+    }
+
+    
+
+    IEnumerator GenerarLista()
+    {
+        GameObject butonPlayer = Resources.Load("ButtonPlayers") as GameObject;
+        GameObject instancia;
+        List<GameObject> instanciasArray = new List<GameObject>();
+        int numeroDeJugadores = 0;
+
+        yield return new WaitForSeconds(3f);
+        do
+        {
+            if (PhotonNetwork.inRoom)
+            {
+                if (numeroDeJugadores != PhotonNetwork.playerList.Length)
+                {
+                    foreach (var item in instanciasArray)
+                    {
+                        Destroy(item);
+                    }
+                    instanciasArray.Clear();
+                    yield return new WaitForSeconds(0.1f);
+
+                    foreach (var item in PhotonNetwork.playerList)
+                    {
+                        instancia = Instantiate(butonPlayer);
+                        instancia.transform.SetParent(contentPlayerUI.transform);
+                        instancia.GetComponent<RectTransform>().localScale = Vector3.one;
+                        instancia.GetComponentInChildren<Text>().text = item.NickName;
+                        instanciasArray.Add(instancia);
+                    }
+                   
+                }
+                
+                
+            }
+            
+            numeroDeJugadores = PhotonNetwork.playerList.Length;
+            yield return new WaitForSeconds(6f);
+
+            
+
+        } while (true);
+
+
+        
     }
 
 	private void spawPlayer()
