@@ -14,6 +14,10 @@ public class DadoAntivirus : MonoBehaviour
 
     int i;
 
+    private void Awake()
+    {
+        
+    }
     // Use this for initialization
     void Start ()
     {
@@ -27,11 +31,12 @@ public class DadoAntivirus : MonoBehaviour
 
     public void CambiarLadoDado()
     {
+        
         Debug.Log("Valor de i: "+i);
         i++;
         if (i <= 3) 
-        {
-            imagenDado.sprite = ladosDado[i];          
+        {           
+            this.imagenDado.sprite = ladosDado[i];          
         }
         if (i == 4) i = 0;
 

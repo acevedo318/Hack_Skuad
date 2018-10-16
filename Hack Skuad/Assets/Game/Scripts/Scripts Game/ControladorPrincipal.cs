@@ -72,7 +72,7 @@ public class ControladorPrincipal : MonoBehaviour {
         do
         {
             playerAntivirus.UbicarAntivirus(fila, columna);
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.0001f);
         } while (!playerAntivirus.ubicacionCorrecta);
         playerAntivirus.InvocarDadosPosicionamiento();
     }

@@ -118,4 +118,12 @@ public class PlayerAntivirus : MonoBehaviour
         }
     }
 
+    public enum opciones
+    {
+        Arriba, Abajo, Derecha, Izquierda
+    }
+    public void MoverVirus(opciones opcion1, opciones opcion2)
+    {
+
+    }
 }
