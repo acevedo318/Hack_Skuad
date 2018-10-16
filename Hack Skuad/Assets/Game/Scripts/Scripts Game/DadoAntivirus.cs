@@ -22,7 +22,8 @@ public class DadoAntivirus : MonoBehaviour
     void Start ()
     {
         i = 0;
-	}
+        this.imagenDado.sprite = ladosDado[i];
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,11 +35,15 @@ public class DadoAntivirus : MonoBehaviour
         
         Debug.Log("Valor de i: "+i);
         i++;
-        if (i <= 3) 
-        {           
-            this.imagenDado.sprite = ladosDado[i];          
+        if (i <= 3)
+        {
+            this.imagenDado.sprite = ladosDado[i];
         }
-        if (i == 4) i = 0;
+        else if (i == 4)
+        {
+            i = 0;
+            this.imagenDado.sprite = ladosDado[i];
+        }
 
     }
 }
