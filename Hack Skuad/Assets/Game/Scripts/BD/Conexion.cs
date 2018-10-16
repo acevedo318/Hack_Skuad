@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mono.Data.Sqlite;
 
+/// <summary>
+/// Conexion a la base de datos 
+/// </summary>
 public class Conexion : MonoBehaviour
 {
 
@@ -11,13 +14,18 @@ public class Conexion : MonoBehaviour
     private SqliteDataReader reader;
 
     private string query;
-
+    /// <summary>
+    /// Se abre la Base de datos JuegoDeMesa.db
+    /// </summary>
+    /// <param name="dbName"></param>
     public void OpenDB(string dbName)
     {
         conexion = new SqliteConnection(dbName);
         conexion.Open();
     }
-
+    /// <summary>
+    /// Se selecciona todos los datos de una tabla
+    /// </summary>
     public void SelectData()
     {
         query = "SELECT * FROM Virus";
@@ -33,7 +41,11 @@ public class Conexion : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// Para insertar datos a una tabla
+    /// </summary>
+    /// <param name="puntos"></param>
+    /// <param name="nombre"></param>
     public void InsertData(int puntos, string nombre)
     {
         query = "INSERT INTO Virus VALUES(2, '" + puntos + "', '" + nombre + "')";
@@ -41,7 +53,10 @@ public class Conexion : MonoBehaviour
         command.CommandText = query;
         command.ExecuteReader();
     }
-
+    /// <summary>
+    /// Se cargan los datos de una tabla referenciando un atributo
+    /// </summary>
+    /// <param name="name"></param>
     public void UpdateData(string name)
     {
         query = "UPDATE Partida SET nombre = '" + name + "' WHERE id = 1";
@@ -49,7 +64,9 @@ public class Conexion : MonoBehaviour
         command.CommandText = query;
         command.ExecuteReader();
     }
-
+    /// <summary>
+    /// Se cierra la base de datos
+    /// </summary>
     public void CloseDB()
     {
         reader.Close();
