@@ -106,6 +106,7 @@ public class PlayerAntivirus : MonoBehaviour
 
     }
 
+    // Método que realiza la invocación de los dados al momento que el virus está en su posición correcta al momento de iniciar el juego
     public void InvocarDadosPosicionamiento()
     {
         Transform contenedorDados = GameObject.Find("ContenedorDadosAntivirus").GetComponent<Transform>();

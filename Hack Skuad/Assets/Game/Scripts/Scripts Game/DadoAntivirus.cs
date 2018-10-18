@@ -30,6 +30,7 @@ public class DadoAntivirus : MonoBehaviour
 		
 	}
 
+    // Método que cambia la imagen del boton, segun el jugador antivirus desee
     public void CambiarLadoDado()
     {
         
