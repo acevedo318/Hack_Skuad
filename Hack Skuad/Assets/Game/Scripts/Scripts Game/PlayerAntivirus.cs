@@ -127,4 +127,35 @@ public class PlayerAntivirus : MonoBehaviour
     {
 
     }
+
+    GameObject[] arrayTemporal;
+    public GameObject[] obtenerVector()
+    {       
+        Vector2 posicionActual= this.transform.position;
+        for (int i = 0; i < 10; i++)
+        {
+            if (posicionActual.Equals(camino1.listaPuntosDeCamino[i].transform.position))
+            {
+                arrayTemporal = camino1.listaPuntosDeCamino;
+                Debug.Log("La posición esta en el vector 1");
+            }
+            if (posicionActual.Equals(camino2.listaPuntosDeCamino[i].transform.position))
+            {
+                arrayTemporal = camino2.listaPuntosDeCamino;
+                Debug.Log("La posición esta en el vector 2");
+            }
+            if (posicionActual.Equals(camino3.listaPuntosDeCamino[i].transform.position))
+            {
+                arrayTemporal = camino3.listaPuntosDeCamino;
+                Debug.Log("La posición esta en el vector 3");
+            }
+            if(posicionActual.Equals(camino4.listaPuntosDeCamino[i].transform.position))
+            {
+                arrayTemporal = camino4.listaPuntosDeCamino;
+                Debug.Log("La posición esta en el vector 4");
+            }
+        }
+        return arrayTemporal;
+        
+    }
 }
