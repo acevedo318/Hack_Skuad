@@ -31,6 +31,7 @@ public class Dado : MonoBehaviour
     int resultadoModuloFila;
     public int ladoDadoRandomFila;
     public int ladoDadoRandomColumna;
+    public AudioSource RodarDado;
 
 
     // Use this for initialization
@@ -50,7 +51,8 @@ public class Dado : MonoBehaviour
         {
             ladoDadoRandomFila = Random.Range(0, 4); // Se obtiene un randon en 0 y 4
             rendFila.sprite = ladosDado[ladoDadoRandomFila]; // Al vector sprite render se le asigna el número generado, para que muestre en pantalla esa imagen
-            yield return new WaitForSeconds(0.1f); // Lo anterior debe ser realizado cada 0.1 segundos 
+            yield return new WaitForSeconds(0.1f); // Lo anterior debe ser realizado cada 0.1 segundos
+            RodarDado.Play(); //Se reproduce el sonido del dado
         }
         setTextoFila(); // al terminar la animación se setea el texto de fila, con el valor generado aleatoriamente
         StartCoroutine(RodarDadoColumna()); // Y se da paso a la otra corutina del siguiente dado
@@ -67,6 +69,7 @@ public class Dado : MonoBehaviour
             ladoDadoRandomColumna = Random.Range(0, 9);
             rendColumna.sprite = ladosDado[ladoDadoRandomColumna];
             yield return new WaitForSeconds(0.1f);
+            RodarDado.Play();
         }
         setTextoColumna();
     }
