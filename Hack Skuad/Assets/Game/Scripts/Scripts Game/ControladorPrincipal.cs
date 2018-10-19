@@ -82,7 +82,7 @@ public class ControladorPrincipal : MonoBehaviour {
             yield return new WaitForSeconds(0.0001f); // Este método se realiza cada cierto tiempo
         } while (!playerAntivirus.ubicacionCorrecta); // El método se realizará hasta que la variable ubicacionCorrecta de la clase antivirus sea "true"
         playerAntivirus.InvocarDadosPosicionamiento(); // Y al final, cuando el antivirus esté ubicado correctamente, se procede a invocar sus dados
-        playerAntivirus.obtenerVector();
+        playerAntivirus.MoverVirus(PlayerAntivirus.opciones.Derecha);
     }
     
     // Método que se realiza para invocar la corutina de ubicar al antivirus en una determinada fila y columna

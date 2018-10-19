@@ -22,6 +22,7 @@ public class PlayerAntivirus : MonoBehaviour
 
     // Velocidad de movimiento del player Antivirus
     private float velocidadMovimiento = 2f;
+    private float velocidadMovimiento2 = 0.1f;
 
     // Variable booleana para validar que la ubicacion del player Antivirus, sea correcta en el mundo del juego
     public bool ubicacionCorrecta { get; set; }
@@ -123,9 +124,25 @@ public class PlayerAntivirus : MonoBehaviour
     {
         Arriba, Abajo, Derecha, Izquierda
     }
-    public void MoverVirus(opciones opcion1, opciones opcion2)
+    GameObject[] arrayTemporal1;
+    public void MoverVirus(opciones opcion)
     {
-
+        arrayTemporal1 = obtenerVector();
+        int posicion = obtenerPocisionVector(arrayTemporal1);
+        if (opcion.Equals(opciones.Derecha))
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion+1].transform.position, Time.deltaTime * velocidadMovimiento2);
+            }
+        }
+        if(opcion.Equals(opciones.Izquierda))
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion-1].transform.position, Time.deltaTime * velocidadMovimiento2);
+            }
+        }
     }
 
     GameObject[] arrayTemporal;
@@ -155,7 +172,21 @@ public class PlayerAntivirus : MonoBehaviour
                 Debug.Log("La posición esta en el vector 4");
             }
         }
-        return arrayTemporal;
-        
+        return arrayTemporal;       
+    }
+
+    public int obtenerPocisionVector(GameObject[] arrayAEvaluar) {
+        int posicion = 0;
+        Vector2 posicionActual = this.transform.position;
+        for (int i = 0; i < 10; i++)
+        {
+            if (posicionActual.Equals(arrayAEvaluar[i].transform.position))
+            {
+                posicion = i;
+                Debug.Log("La posición es: " + posicion);
+            }
+        }
+        Debug.Log("La posición es: " + posicion);
+        return posicion;
     }
 }
