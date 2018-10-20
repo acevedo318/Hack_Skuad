@@ -20,13 +20,15 @@ public class PlayerAntivirus : MonoBehaviour
     public ContenedorArray camino3;
     public ContenedorArray camino4;
 
+    public GameObject[] contenedorCaminos;
+
     // Velocidad de movimiento del player Antivirus
     private float velocidadMovimiento = 2f;
     private float velocidadMovimiento2 = 0.1f;
 
     // Variable booleana para validar que la ubicacion del player Antivirus, sea correcta en el mundo del juego
     public bool ubicacionCorrecta { get; set; }
-
+    public bool ubicacionCorrecta2 { get; set; }
     [SerializeField]
     private GameObject botonDado;
 
@@ -35,7 +37,7 @@ public class PlayerAntivirus : MonoBehaviour
     void Start()
     {
         ubicacionCorrecta = false; // Se inicializa la posición del Antivirus como false
-        
+        ubicacionCorrecta2 = false;
     }
 
     // Update is called once per frame
@@ -124,6 +126,7 @@ public class PlayerAntivirus : MonoBehaviour
     {
         Arriba, Abajo, Derecha, Izquierda
     }
+
     GameObject[] arrayTemporal1;
     public void MoverVirus(opciones opcion)
     {
@@ -131,24 +134,52 @@ public class PlayerAntivirus : MonoBehaviour
         int posicion = obtenerPocisionVector(arrayTemporal1);
         if (opcion.Equals(opciones.Derecha))
         {
-            for (int i = 0; i < 100; i++)
+            do
             {
-                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion+1].transform.position, Time.deltaTime * velocidadMovimiento2);
-            }
+                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion + 1].transform.position, Time.deltaTime * velocidadMovimiento2);
+                if (this.transform.position == arrayTemporal1[posicion + 1].transform.position) ubicacionCorrecta2 = true;
+            } while (!ubicacionCorrecta2);
         }
-        if(opcion.Equals(opciones.Izquierda))
+        if (opcion.Equals(opciones.Izquierda))
         {
-            for (int i = 0; i < 100; i++)
+            do
             {
-                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion-1].transform.position, Time.deltaTime * velocidadMovimiento2);
-            }
+                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion - 1].transform.position, Time.deltaTime * velocidadMovimiento2);
+                if (this.transform.position == arrayTemporal1[posicion - 1].transform.position) ubicacionCorrecta2 = true;
+            } while (!ubicacionCorrecta2);
+        }
+        if (opcion.Equals(opciones.Abajo))
+        {
+            //contenedorCaminos = new GameObject[4];
+            //contenedorCaminos[0] = camino1.listaPuntosDeCamino;
+            //int numeroCamino=0;
+            //int temp = 0;
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    if (arrayTemporal1.Equals(contenedorCaminos[i])) {
+            //        contenedorCaminos[i] = arrayTemporal1;
+            //        numeroCamino = 1;
+            //    }
+            //}
+            //if (numeroCamino == 1)
+            //{
+            //    do
+            //    {
+            //        this.transform.position = Vector2.MoveTowards(this.transform.position, contenedorCaminos[temp+1].arrayTemporal1[posicion].transform.position, Time.deltaTime * velocidadMovimiento2);
+            //        if (this.transform.position == arrayTemporal1[posicion].transform.position) ubicacionCorrecta2 = true;
+            //    } while (!ubicacionCorrecta2);
+            //}
+        }
+        if (opcion.Equals(opciones.Arriba))
+        {
+
         }
     }
 
     GameObject[] arrayTemporal;
     public GameObject[] obtenerVector()
-    {       
-        Vector2 posicionActual= this.transform.position;
+    {
+        Vector2 posicionActual = this.transform.position;
         for (int i = 0; i < 10; i++)
         {
             if (posicionActual.Equals(camino1.listaPuntosDeCamino[i].transform.position))
@@ -166,16 +197,17 @@ public class PlayerAntivirus : MonoBehaviour
                 arrayTemporal = camino3.listaPuntosDeCamino;
                 Debug.Log("La posición esta en el vector 3");
             }
-            if(posicionActual.Equals(camino4.listaPuntosDeCamino[i].transform.position))
+            if (posicionActual.Equals(camino4.listaPuntosDeCamino[i].transform.position))
             {
                 arrayTemporal = camino4.listaPuntosDeCamino;
                 Debug.Log("La posición esta en el vector 4");
             }
         }
-        return arrayTemporal;       
+        return arrayTemporal;
     }
 
-    public int obtenerPocisionVector(GameObject[] arrayAEvaluar) {
+    public int obtenerPocisionVector(GameObject[] arrayAEvaluar)
+    {
         int posicion = 0;
         Vector2 posicionActual = this.transform.position;
         for (int i = 0; i < 10; i++)
