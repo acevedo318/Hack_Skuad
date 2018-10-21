@@ -129,8 +129,9 @@ public class PlayerAntivirus : MonoBehaviour
     GameObject[] arrayTemporal1; // Arreglo de tipo gameobject que almacenará un vector temporalmente
 
     // Método para mover al jugador Antivirus, según el parametro que se le envía, desde el método de tipo enum
-    public IEnumerator MoverVirus(int opcion)
+    public void MoverVirus(int opcion)
     {
+        Debug.Log("Opcion recibida número: " + opcion);
         arrayTemporal1 = obtenerVector(); // En el vector temporal se almacena el vector en donde se encuentra ubicado el jugador antivirus en el instante
         int posicion = obtenerPocisionVector(arrayTemporal1); // Se crea una variable temporal int de posicion, que almacena la posición en donde se encuentra el gameobject de posicion en su respectivo vector "camino"
         if (opcion==2) // Se evalua la opcion entregada por el parametro, si es "derecha"
@@ -203,7 +204,7 @@ public class PlayerAntivirus : MonoBehaviour
                 } while (!ubicacionCorrecta2);
             }
         }
-        yield return new WaitForSeconds(1.5f);
+        
     }
 
     GameObject[] arrayTemporal; // Arreglo de tipo gameobject que almacenará un vector temporalmente

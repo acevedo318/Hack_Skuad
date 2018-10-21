@@ -90,12 +90,23 @@ public class ControladorPrincipal : MonoBehaviour
         StartCoroutine(Ubicar(fila, columna));
     }
 
-    public void EjecutarJugadaAntivirus()
+    public IEnumerator EjecutarJugadaAntivirus()
     {
-        for (int i = 0; i < playerAntivirus.tomarMovimientos().Count; i++)
+        int i = 0;
+        int opcion = 0;
+        do
         {
             Debug.Log(playerAntivirus.tomarMovimientos()[i]);
-            StartCoroutine(playerAntivirus.MoverVirus(playerAntivirus.tomarMovimientos()[i]));
-        }
+            opcion = playerAntivirus.tomarMovimientos()[i];
+            playerAntivirus.MoverVirus(opcion);
+            i++;
+            yield return new WaitForSeconds(3f);
+        } while (i != playerAntivirus.tomarMovimientos().Count);    
     }
+
+    public void Ejecutar() {
+        StartCoroutine(EjecutarJugadaAntivirus());
+    }
+
+
 }
