@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DadoAntivirus : MonoBehaviour
-{
-
-    [SerializeField]
-    private Sprite[] ladosDado;
+{    
+    public Sprite[] ladosDado;
 
     [SerializeField]
     private Image imagenDado;
@@ -33,8 +31,6 @@ public class DadoAntivirus : MonoBehaviour
     // Método que cambia la imagen del boton, segun el jugador antivirus desee
     public void CambiarLadoDado()
     {
-        
-        Debug.Log("Valor de i: "+i);
         i++;
         if (i <= 3)
         {

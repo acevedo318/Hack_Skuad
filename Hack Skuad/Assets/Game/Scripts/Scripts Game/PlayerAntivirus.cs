@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 /// <summary>
 /// La clase del jugador Antivirus
@@ -21,21 +22,25 @@ public class PlayerAntivirus : MonoBehaviour
     public ContenedorArray camino4;
 
     // Velocidad de movimiento del player Antivirus
-    private float velocidadMovimiento = 2f;
+    private float velocidadMovimiento = 4f;
     private float velocidadMovimiento2 = 0.1f;
 
     // Variable booleana para validar que la ubicacion del player Antivirus, sea correcta en el mundo del juego
     public bool ubicacionCorrecta { get; set; }
     public bool ubicacionCorrecta2 { get; set; }
+
     [SerializeField]
     private GameObject botonDado;
 
     List<GameObject> listaBotonDados;
+
+    DadoAntivirus dadoAntivirus;
     // Use this for initialization
     void Start()
     {
         ubicacionCorrecta = false; // Se inicializa la posición del Antivirus como false
         ubicacionCorrecta2 = false;
+        dadoAntivirus = botonDado.GetComponent<DadoAntivirus>();
     }
 
     // Update is called once per frame
@@ -105,20 +110,30 @@ public class PlayerAntivirus : MonoBehaviour
         }
     }
 
-    // Método de tipo enum, para enumerar las opciones de movimiento que tiene el jugador antivirus
-    public enum opciones
-    {
-        Arriba, Abajo, Derecha, Izquierda
+    public List<int> tomarMovimientos()
+    {     
+        List<int> listaMovimientos = new List<int>();
+        for (int i = 0; i < listaBotonDados.Count; i++)
+        {
+            for (int j = 0; j < dadoAntivirus.ladosDado.Length; j++)
+            {
+                if (listaBotonDados[i].GetComponent<Image>().sprite.Equals(dadoAntivirus.ladosDado[j]))
+                {
+                    listaMovimientos.Add(j);
+                }
+            }      
+        }
+        return listaMovimientos;
     }
 
     GameObject[] arrayTemporal1; // Arreglo de tipo gameobject que almacenará un vector temporalmente
 
     // Método para mover al jugador Antivirus, según el parametro que se le envía, desde el método de tipo enum
-    public void MoverVirus(opciones opcion)
+    public IEnumerator MoverVirus(int opcion)
     {
         arrayTemporal1 = obtenerVector(); // En el vector temporal se almacena el vector en donde se encuentra ubicado el jugador antivirus en el instante
         int posicion = obtenerPocisionVector(arrayTemporal1); // Se crea una variable temporal int de posicion, que almacena la posición en donde se encuentra el gameobject de posicion en su respectivo vector "camino"
-        if (opcion.Equals(opciones.Derecha)) // Se evalua la opcion entregada por el parametro, si es "derecha"
+        if (opcion==2) // Se evalua la opcion entregada por el parametro, si es "derecha"
         {
             do // El personaje antivirus se moverá en el mismo vector pero a una posición adelante
             {
@@ -126,7 +141,7 @@ public class PlayerAntivirus : MonoBehaviour
                 if (this.transform.position == arrayTemporal1[posicion + 1].transform.position) ubicacionCorrecta2 = true;
             } while (!ubicacionCorrecta2); // El movimiento lo realizará hasta que la posición del jugador antivirus en el mundo sea igual a la de la posición siguiente 
         }
-        if (opcion.Equals(opciones.Izquierda)) // Se evalua la opcion entregada por el parametro, si es "izquierda"
+        if (opcion==3) // Se evalua la opcion entregada por el parametro, si es "izquierda"
         {
             do // El personaje antivirus se moverá en el mismo vector pero a una posición detrás
             {
@@ -134,7 +149,7 @@ public class PlayerAntivirus : MonoBehaviour
                 if (this.transform.position == arrayTemporal1[posicion - 1].transform.position) ubicacionCorrecta2 = true;
             } while (!ubicacionCorrecta2); // El movimiento lo realizará hasta que la posición del jugador antivirus en el mundo sea igual a la de la posición anterior
         }
-        if (opcion.Equals(opciones.Abajo)) // Se evalua la opcion entregada por el parametro, si es abajo
+        if (opcion==0) // Se evalua la opcion entregada por el parametro, si es abajo
         {
             if (arrayTemporal1.Equals(camino1.listaPuntosDeCamino)) // Se evalua que el vector en la variable temporal sea igual al camino 1
             {
@@ -161,7 +176,7 @@ public class PlayerAntivirus : MonoBehaviour
                 } while (!ubicacionCorrecta2);
             }
         }
-        if (opcion.Equals(opciones.Arriba)) // Se evalua la opcion entregada por el parametro, si es arriba
+        if (opcion==1) // Se evalua la opcion entregada por el parametro, si es arriba
         {
             if (arrayTemporal1.Equals(camino2.listaPuntosDeCamino)) // Se evalua que el vector en la variable temporal sea igual al camino 2
             {
@@ -188,6 +203,7 @@ public class PlayerAntivirus : MonoBehaviour
                 } while (!ubicacionCorrecta2);
             }
         }
+        yield return new WaitForSeconds(1.5f);
     }
 
     GameObject[] arrayTemporal; // Arreglo de tipo gameobject que almacenará un vector temporalmente
@@ -201,22 +217,18 @@ public class PlayerAntivirus : MonoBehaviour
             if (posicionActual.Equals(camino1.listaPuntosDeCamino[i].transform.position))
             {
                 arrayTemporal = camino1.listaPuntosDeCamino;
-                Debug.Log("La posición esta en el vector 1");
             }
             if (posicionActual.Equals(camino2.listaPuntosDeCamino[i].transform.position))
             {
                 arrayTemporal = camino2.listaPuntosDeCamino;
-                Debug.Log("La posición esta en el vector 2");
             }
             if (posicionActual.Equals(camino3.listaPuntosDeCamino[i].transform.position))
             {
                 arrayTemporal = camino3.listaPuntosDeCamino;
-                Debug.Log("La posición esta en el vector 3");
             }
             if (posicionActual.Equals(camino4.listaPuntosDeCamino[i].transform.position))
             {
                 arrayTemporal = camino4.listaPuntosDeCamino;
-                Debug.Log("La posición esta en el vector 4");
             }
         }
         return arrayTemporal;
@@ -233,7 +245,6 @@ public class PlayerAntivirus : MonoBehaviour
                 posicion = i;
             }
         }
-        Debug.Log("La posición es: " + posicion);
         return posicion;
     }
 }
