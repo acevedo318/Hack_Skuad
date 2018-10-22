@@ -10,6 +10,8 @@ public class PlayerVirus : MonoBehaviour
 	private Player player;
     [SerializeField]
     private Dado dado;
+    [SerializeField]
+    private GameObject[] dados;
 
 	// Use this for initialization
 	void Start ()
