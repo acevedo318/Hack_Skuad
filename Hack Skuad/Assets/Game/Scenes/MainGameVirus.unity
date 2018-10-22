@@ -2213,7 +2213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5685506, y: 0.11338626}
   m_AnchorMax: {x: 0.60087514, y: 0.14554505}
-  m_AnchoredPosition: {x: 1.2399979, y: -0.5}
+  m_AnchoredPosition: {x: 1.2399979, y: 0}
   m_SizeDelta: {x: 2.4800034, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &218764132
@@ -2254,7 +2254,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1048944999}
   toggleTransition: 1
   graphic: {fileID: 1350030104}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 745421704}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6588,7 +6588,7 @@ MonoBehaviour:
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
-  m_inputSource: 3
+  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -7097,7 +7097,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2056056348}
   toggleTransition: 1
   graphic: {fileID: 1762780374}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 745421704}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8055,6 +8055,7 @@ GameObject:
   - component: {fileID: 745421702}
   - component: {fileID: 745421701}
   - component: {fileID: 745421703}
+  - component: {fileID: 745421704}
   m_Layer: 10
   m_Name: JugadorInteger
   m_TagString: Player
@@ -8135,6 +8136,22 @@ MonoBehaviour:
   player: {fileID: 0}
   dado: {fileID: 0}
   dados: []
+  toggles:
+  - {fileID: 2094729620}
+  - {fileID: 666923820}
+  - {fileID: 218764132}
+--- !u!114 &745421704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745421700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1184210157, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &747139598
 GameObject:
   m_ObjectHideFlags: 0
@@ -11048,7 +11065,7 @@ MonoBehaviour:
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
-  m_inputSource: 3
+  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -17772,6 +17789,7 @@ MonoBehaviour:
   player: {fileID: 0}
   dado: {fileID: 0}
   dados: []
+  toggles: []
 --- !u!1 &1540952009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1527875966762722, guid: 46f7107d1036c6e4ab3ee810163bb9dc,
@@ -21903,7 +21921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00003868218, y: 0}
+  m_AnchoredPosition: {x: 0.000008656795, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2023045125
@@ -22742,7 +22760,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1478916257}
   toggleTransition: 1
   graphic: {fileID: 1170715141}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 745421704}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
