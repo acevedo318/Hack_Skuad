@@ -96,11 +96,11 @@ public class ControladorPrincipal : MonoBehaviour
         int opcion = 0;
         do
         {
+            yield return new WaitForSeconds(2f);
             Debug.Log(playerAntivirus.tomarMovimientos()[i]);
             opcion = playerAntivirus.tomarMovimientos()[i];
             playerAntivirus.MoverVirus(opcion);
             i++;
-            yield return new WaitForSeconds(3f);
         } while (i != playerAntivirus.tomarMovimientos().Count);    
     }
 

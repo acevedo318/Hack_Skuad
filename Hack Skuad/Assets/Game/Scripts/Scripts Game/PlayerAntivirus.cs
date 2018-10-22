@@ -89,7 +89,7 @@ public class PlayerAntivirus : MonoBehaviour
                 break;
             case 3:
                 this.transform.position = Vector2.MoveTowards(transform.position, camino4.listaPuntosDeCamino[columna].transform.position, Time.deltaTime * velocidadMovimiento); // Se le dice al player antivirus en que posicion ubicarse en la fila 3
-                if (this.transform.position == camino1.listaPuntosDeCamino[columna].transform.position)
+                if (this.transform.position == camino4.listaPuntosDeCamino[columna].transform.position)
                 {
                     ubicacionCorrecta = true;
                 }
@@ -126,32 +126,17 @@ public class PlayerAntivirus : MonoBehaviour
         return listaMovimientos;
     }
 
-    GameObject[] arrayTemporal1; // Arreglo de tipo gameobject que almacenará un vector temporalmente
+    //GameObject[] arrayTemporal1; // Arreglo de tipo gameobject que almacenará un vector temporalmente
 
     // Método para mover al jugador Antivirus, según el parametro que se le envía, desde el método de tipo enum
     public void MoverVirus(int opcion)
     {
         Debug.Log("Opcion recibida número: " + opcion);
-        arrayTemporal1 = obtenerVector(); // En el vector temporal se almacena el vector en donde se encuentra ubicado el jugador antivirus en el instante
+        GameObject[]  arrayTemporal1 = obtenerVector(); // En el vector temporal se almacena el vector en donde se encuentra ubicado el jugador antivirus en el instante
         int posicion = obtenerPocisionVector(arrayTemporal1); // Se crea una variable temporal int de posicion, que almacena la posición en donde se encuentra el gameobject de posicion en su respectivo vector "camino"
-        if (opcion==2) // Se evalua la opcion entregada por el parametro, si es "derecha"
+        if (opcion == 0) // Se evalua la opcion entregada por el parametro, si es abajo
         {
-            do // El personaje antivirus se moverá en el mismo vector pero a una posición adelante
-            {
-                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion + 1].transform.position, Time.deltaTime * velocidadMovimiento2);
-                if (this.transform.position == arrayTemporal1[posicion + 1].transform.position) ubicacionCorrecta2 = true;
-            } while (!ubicacionCorrecta2); // El movimiento lo realizará hasta que la posición del jugador antivirus en el mundo sea igual a la de la posición siguiente 
-        }
-        if (opcion==3) // Se evalua la opcion entregada por el parametro, si es "izquierda"
-        {
-            do // El personaje antivirus se moverá en el mismo vector pero a una posición detrás
-            {
-                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion - 1].transform.position, Time.deltaTime * velocidadMovimiento2);
-                if (this.transform.position == arrayTemporal1[posicion - 1].transform.position) ubicacionCorrecta2 = true;
-            } while (!ubicacionCorrecta2); // El movimiento lo realizará hasta que la posición del jugador antivirus en el mundo sea igual a la de la posición anterior
-        }
-        if (opcion==0) // Se evalua la opcion entregada por el parametro, si es abajo
-        {
+            Debug.Log("Aca esta entrando? abajo");
             if (arrayTemporal1.Equals(camino1.listaPuntosDeCamino)) // Se evalua que el vector en la variable temporal sea igual al camino 1
             {
                 do // El personaje antivirus se moverá hasta el camino siguiente del camino 1, osea el camino 2
@@ -177,8 +162,10 @@ public class PlayerAntivirus : MonoBehaviour
                 } while (!ubicacionCorrecta2);
             }
         }
-        if (opcion==1) // Se evalua la opcion entregada por el parametro, si es arriba
+
+        if (opcion == 1) // Se evalua la opcion entregada por el parametro, si es arriba
         {
+            Debug.Log("Aca esta entrando? arriba");
             if (arrayTemporal1.Equals(camino2.listaPuntosDeCamino)) // Se evalua que el vector en la variable temporal sea igual al camino 2
             {
                 do // El personaje antivirus se moverá hasta el camino anterior del camino 2, osea el camino 1
@@ -204,7 +191,26 @@ public class PlayerAntivirus : MonoBehaviour
                 } while (!ubicacionCorrecta2);
             }
         }
-        
+
+        if (opcion==2) // Se evalua la opcion entregada por el parametro, si es "derecha"
+        {
+            Debug.Log("Aca esta entrando? derecha");
+            do // El personaje antivirus se moverá en el mismo vector pero a una posición adelante
+            {
+                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion + 1].transform.position, Time.deltaTime * velocidadMovimiento2);
+                if (this.transform.position == arrayTemporal1[posicion + 1].transform.position) ubicacionCorrecta2 = true;
+            } while (!ubicacionCorrecta2); // El movimiento lo realizará hasta que la posición del jugador antivirus en el mundo sea igual a la de la posición siguiente 
+        }
+
+        if (opcion==3) // Se evalua la opcion entregada por el parametro, si es "izquierda"
+        {
+            Debug.Log("Aca esta entrando? izquierda");
+            do // El personaje antivirus se moverá en el mismo vector pero a una posición detrás
+            {
+                this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion - 1].transform.position, Time.deltaTime * velocidadMovimiento2);
+                if (this.transform.position == arrayTemporal1[posicion - 1].transform.position) ubicacionCorrecta2 = true;
+            } while (!ubicacionCorrecta2); // El movimiento lo realizará hasta que la posición del jugador antivirus en el mundo sea igual a la de la posición anterior
+        }  
     }
 
     GameObject[] arrayTemporal; // Arreglo de tipo gameobject que almacenará un vector temporalmente
