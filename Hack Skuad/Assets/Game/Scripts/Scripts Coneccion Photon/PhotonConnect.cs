@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+    /// <summary>
+    /// Crea y permite la conección entre el servidor de Photon y el usuario, muestra los datos de esta conección
+    /// </summary>
 public class PhotonConnect : Photon.MonoBehaviour {
 
 	public string versionName = "0.1";
     private photonHandler photonHandler;
     private bool joinRoom = false;
 
+	// En el caso de que no haya coneccion se procede a crear una nueva coneccion y se le asigna la version 
+	// se llama la funcion para mantener la pantalla siempre encendida.
 	private void Awake(){
         if (!PhotonNetwork.connected)
         {
@@ -22,7 +27,7 @@ public class PhotonConnect : Photon.MonoBehaviour {
 	}
 
     /// <summary>
-    /// Cuando se conecta al master
+    /// Cuando se conecte al servidor se le da un nombre al player en el servidor.
     /// </summary>
 	private void OnConnectedToMaster(){
 		PhotonNetwork.JoinLobby(TypedLobby.Default);
@@ -32,7 +37,7 @@ public class PhotonConnect : Photon.MonoBehaviour {
 	}
 
     /// <summary>
-    /// Se desconecta del Photon
+    /// Cuando se pierda la coneccion se imprime en consola
     /// </summary>
 	private void OnDisconnectedFromPhoton(){
 
@@ -40,23 +45,19 @@ public class PhotonConnect : Photon.MonoBehaviour {
 		Debug.Log("Dis from photon services");
 	}
 
-    /// <summary>
-    /// Falla la conexion
-    /// </summary>
+ 
 	private void OnFailedToConnectToPhoton(){
 		
 	}
 
-    /// <summary>
-    /// Se ha unido
-    /// </summary>
+
 	private void OnJoinedLobby(){
 
 		Debug.Log("On Joined Lobby");
 	}
 
     /// <summary>
-    /// No permite que se apague la pantalla
+    /// No permite que se apague la pantalla en el caso de un dispositivo movil
     /// </summary>
     public void PantallaSiempreEncendida()
     {
@@ -64,7 +65,7 @@ public class PhotonConnect : Photon.MonoBehaviour {
     }
 
     /// <summary>
-    /// Se ha unido a una sala
+    /// Verifica que se haya unido a una sola y se asigna en el booleano joinRoom
     /// </summary>
     private void OnJoinedRoom()
     {
@@ -72,7 +73,8 @@ public class PhotonConnect : Photon.MonoBehaviour {
     }
 
     /// <summary>
-    /// GUI PRUEBAS
+    /// Muestra en pantalla datos de conección, como el estado de coneccion o el nombre de sala en la que se encuentra,
+    /// ping y usuarios conectados.
     /// </summary>
     private void OnGUI()
     {
