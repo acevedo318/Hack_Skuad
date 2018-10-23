@@ -101,6 +101,7 @@ public class ControladorPrincipal : MonoBehaviour
             opcion = playerAntivirus.tomarMovimientos()[i];
             playerAntivirus.MoverVirus(opcion);
             i++;
+            playerAntivirus.ubicacionCorrecta2 = false;
         } while (i != playerAntivirus.tomarMovimientos().Count);    
     }
 
