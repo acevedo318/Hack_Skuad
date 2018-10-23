@@ -21,6 +21,9 @@ public photonHandler pHandler;
        pHandler.joinOrCreateRoom();
     }
 
+    /// <summary>
+    /// Verifica que el nombre de la sala tengo mas de dos caracteres y cuando se cumpla se procede a crear una nueva sala
+    /// </summary>
     public void OnClickCreateRoom()
     {
         if(createRoomInput.text.Length > 1)
@@ -30,6 +33,9 @@ public photonHandler pHandler;
         
     }
 
+    /// <summary>
+    /// Busca las salas disponibles y las agrega como opciones en el Dropdown
+    /// </summary>
     public void CargarSalas()
     {
         dropdownJoinRoom.options.Clear();

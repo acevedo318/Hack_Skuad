@@ -21,6 +21,10 @@ public class photonHandler : MonoBehaviour {
     private GameObject textoSala;
 
     public string nombreDeSala;
+    
+    /// <summary>
+    /// Asigna el nombre del dispositivo al servidor y no permite que este GameObject se destruya en caso de cambiar de escena
+    /// </summary>
 	private void Awake()
 	{
         ConfigurarIdentificador();
@@ -30,22 +34,34 @@ public class photonHandler : MonoBehaviour {
         DontDestroyOnLoad(this.transform);
 	}
 
+    /// <summary>
+    /// Crea una nueva sala tomando los datos del script PhotonButtons y asignando un limite de 5 jugadores como maximo
+    /// </summary>
 	public void createNewRoom()
 	{
 		PhotonNetwork.CreateRoom(photonB.createRoomInput.text, new RoomOptions() { MaxPlayers = 5 },TypedLobby.Default);
 	}
 
+    /// <summary>
+    /// Se une a una nueva sala tomando los datos del script PhotonButtons solo solicitando el nombre de la sala a unir
+    /// </summary>
 	public void joinOrCreateRoom()
 	{
         PhotonNetwork.JoinRoom(photonB.dropdownJoinRoom.options[photonB.dropdownJoinRoom.value].text);
         
 	}
 
+    /// <summary>
+    /// ***
+    /// </summary>
 	public void moveScene()
 	{
 		PhotonNetwork.LoadLevel("Test");
 	}
 
+    /// <summary>
+    /// Cuando el usuario se haya unido a una sala se obtiene el nombre y se muestra en pantalla
+    /// </summary>
 	private void OnJoinedRoom()
     {
         nombreDeSala = PhotonNetwork.room.Name;
@@ -53,7 +69,9 @@ public class photonHandler : MonoBehaviour {
         textoSala.GetComponent<TextMeshProUGUI>().text = "Sala: \n" + nombreDeSala;
     }
 
-
+    /// <summary>
+    /// Cuando se haya terminado de cargar una escena se verifica que sea la de juego y si esta en la escena de juego se crea una instancia del jugador
+    /// </summary>
     private void OnFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
 		if(scene.name == "Test")
@@ -67,6 +85,9 @@ public class photonHandler : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Cuando se llama verifica que este en la escena del Menu de juego y si es correcto activa la corrutina para generar una lista de usuarios conectados
+    /// </summary>
     public void ListarPlayers()
     {
         if (SceneManager.GetActiveScene().name == "UIGame")
@@ -78,7 +99,10 @@ public class photonHandler : MonoBehaviour {
     }
 
     
-
+    /// <summary>
+    /// Crea unas instancias de botones dependiendo del numero de usuarios conectados en la misma sala y muestra los Nicknames de los usuarios conectados
+    /// Se sigue verificando cada 6 Segundos si se ha unido un nuevo usuario.
+    /// </summary>
     IEnumerator GenerarLista()
     {
         GameObject butonPlayer = Resources.Load("ButtonPlayers") as GameObject;
@@ -125,11 +149,17 @@ public class photonHandler : MonoBehaviour {
         
     }
 
+    /// <summary>
+    /// Crea una instancia del jugador el cual tiene una posicion central
+    /// </summary>
 	private void spawPlayer()
 	{
 		PhotonNetwork.Instantiate(playerMain.name,playerMain.transform.position,playerMain.transform.rotation,0);
 	}
 
+    /// <summary>
+    /// Si no se encuentra un nombre de usuario como identificador se le asigna de forma predeterminada el nombre del dispositivo
+    /// </summary>
     private void ConfigurarIdentificador()
     {
         if (PlayerPrefs.GetString("Identificador",null) != null)
@@ -138,6 +168,7 @@ public class photonHandler : MonoBehaviour {
         }
         
     }
+
 
     public string Identificador
     {
