@@ -50,7 +50,8 @@ public class PlayerVirus : MonoBehaviour
 
         transform.position = ubicacion;
 
-        MoverCondicional(caminoY);
+        
+        StartCoroutine(MoverCondicional(caminoY));
 
         print("sum:" + dadoVirus.ValorASumar);
     }
@@ -59,16 +60,16 @@ public class PlayerVirus : MonoBehaviour
     /// Se repetira hasta que se cumpla la condicion
     /// </summary>
     /// <param name="caminoY"></param>
-    public void MoverCondicional(GameObject caminoY)
+    IEnumerator MoverCondicional(GameObject caminoY)
     {
 
-        for (int i = 0; i < 10; i++)
+        for (int i = dadoVirus.PosicionX; i < 10; i++)
         {
 
             GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
-            print(caminoX.name+"-");
-           // StartCoroutine(Mover(caminoX.transform.position));
-
+            
+            StartCoroutine(Mover(caminoX.transform.position));
+            yield return new WaitForSeconds(3f);
         }
 
     }
@@ -83,16 +84,7 @@ public class PlayerVirus : MonoBehaviour
 
         Vector3 direccion3 = direccion;
         transform.position = direccion3;
-        yield return new WaitForSeconds(10f);
-
-        /*
-        while (transform.position == direccion3)
-        {
-            transform.position = Vector2.MoveTowards(transform.position,direccion3,Time.deltaTime*1f);
-
-            
-        }
-        */
+        yield return new WaitForSeconds(1f);
 
     }
    
