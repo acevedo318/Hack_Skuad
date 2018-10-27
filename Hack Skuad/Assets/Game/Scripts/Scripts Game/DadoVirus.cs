@@ -8,10 +8,14 @@ public class DadoVirus : MonoBehaviour {
 
     [SerializeField]
     private TMP_Dropdown posicionY,posicionX;
-    
+    [SerializeField]
+    private TMP_Dropdown posicionSum,posicionValorCond;//Valores de las condiciones
+    [SerializeField]
+    private TMP_Dropdown posicionCondicional, posicionSumCond;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -35,7 +39,49 @@ public class DadoVirus : MonoBehaviour {
         {
             return int.Parse(this.posicionX.options[this.posicionX.value].text);
         }
+
+    }
+
+    /// <summary>
+    /// Condicion Mientras valores < > 
+    /// </summary>
+    public string Condicion
+    {
+        get
+        {
+            return this.posicionCondicional.options[this.posicionCondicional.value].text;
+        }
         
+    }
+
+    public int ValorCondicion
+    {
+        get
+        {
+            return int.Parse(this.posicionValorCond.options[this.posicionValorCond.value].text);
+        }
+
+    }
+
+    public int ValorASumar
+    {
+        get
+        {
+            return int.Parse(this.posicionSum.options[this.posicionSum.value].text);
+        }
+
+    }
+
+    /// <summary>
+    /// Condicion que hara el mientras valores + -
+    /// </summary>
+    public int CondicionSuma
+    {
+        get
+        {
+            return int.Parse(this.posicionSumCond.options[this.posicionSumCond.value].text);
+        }
+
     }
 
 }
