@@ -4885,7 +4885,7 @@ MonoBehaviour:
   panelUbicacionAntivirus: {fileID: 1626410833}
   ladoDadoRandomFila: 0
   ladoDadoRandomColumna: 0
-  RodarDado: {fileID: 0}
+  RodarDado: {fileID: 1196871646}
 --- !u!212 &531317812
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12777,7 +12777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.7102051, y: -43.300003}
+  m_AnchoredPosition: {x: 1.7102051, y: -43.300007}
   m_SizeDelta: {x: -94.32, y: -103.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1133953596
@@ -18233,7 +18233,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 451689595}
   m_HandleRect: {fileID: 451689594}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -20658,7 +20658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -11.68, y: 1.7075005}
+  m_AnchoredPosition: {x: -11.679999, y: 1.7075005}
   m_SizeDelta: {x: -31.56, y: -8.585}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869022201
@@ -21825,7 +21825,7 @@ MonoBehaviour:
   panelUbicacionAntivirus: {fileID: 1626410833}
   ladoDadoRandomFila: 0
   ladoDadoRandomColumna: 0
-  RodarDado: {fileID: 0}
+  RodarDado: {fileID: 1196871646}
 --- !u!212 &2007523114
 SpriteRenderer:
   m_ObjectHideFlags: 0
