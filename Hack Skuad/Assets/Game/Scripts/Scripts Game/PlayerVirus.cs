@@ -50,7 +50,50 @@ public class PlayerVirus : MonoBehaviour
 
         transform.position = ubicacion;
 
+        MoverCondicional(caminoY);
+
         print("sum:" + dadoVirus.ValorASumar);
+    }
+
+    /// <summary>
+    /// Se repetira hasta que se cumpla la condicion
+    /// </summary>
+    /// <param name="caminoY"></param>
+    public void MoverCondicional(GameObject caminoY)
+    {
+
+        for (int i = 0; i < 10; i++)
+        {
+
+            GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
+            print(caminoX.name+"-");
+           // StartCoroutine(Mover(caminoX.transform.position));
+
+        }
+
+    }
+
+    /// <summary>
+    /// Se movera
+    /// </summary>
+    /// <param name="direccion"></param>
+    /// <returns></returns>
+    IEnumerator Mover(Vector2 direccion)
+    {
+
+        Vector3 direccion3 = direccion;
+        transform.position = direccion3;
+        yield return new WaitForSeconds(10f);
+
+        /*
+        while (transform.position == direccion3)
+        {
+            transform.position = Vector2.MoveTowards(transform.position,direccion3,Time.deltaTime*1f);
+
+            
+        }
+        */
+
     }
    
 }
