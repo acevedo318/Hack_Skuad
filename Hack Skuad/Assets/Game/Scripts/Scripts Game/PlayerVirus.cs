@@ -53,7 +53,7 @@ public class PlayerVirus : MonoBehaviour
         
         StartCoroutine(MoverCondicional(caminoY));
 
-        print("sum:" + dadoVirus.ValorASumar);
+        
     }
 
     /// <summary>
@@ -62,16 +62,32 @@ public class PlayerVirus : MonoBehaviour
     /// <param name="caminoY"></param>
     IEnumerator MoverCondicional(GameObject caminoY)
     {
-
-        for (int i = dadoVirus.PosicionX; i < 10; i++)
+        if (dadoVirus.Condicion == "<")
         {
 
-            GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
-            
-            StartCoroutine(Mover(caminoX.transform.position));
-            yield return new WaitForSeconds(3f);
+            for (int i = dadoVirus.PosicionX; i < dadoVirus.ValorCondicion+1; i += dadoVirus.ValorASumar)
+            {
+
+                GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
+
+                StartCoroutine(Mover(caminoX.transform.position));
+                yield return new WaitForSeconds(3f);
+            }
+
+        }
+        else if(dadoVirus.Condicion == ">")
+        {
+            for (int i = dadoVirus.PosicionX; i > dadoVirus.ValorCondicion-1; i += dadoVirus.ValorASumar)
+            {
+                
+                GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
+
+                StartCoroutine(Mover(caminoX.transform.position));
+                yield return new WaitForSeconds(3f);
+            }
         }
 
+        print("Fin Turno: " + this.gameObject.name);
     }
 
     /// <summary>
