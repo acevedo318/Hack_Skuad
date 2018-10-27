@@ -50,6 +50,7 @@ public class PlayerVirus : MonoBehaviour
 
         transform.position = ubicacion;
 
+        print("sum:" + dadoVirus.ValorASumar);
     }
    
 }

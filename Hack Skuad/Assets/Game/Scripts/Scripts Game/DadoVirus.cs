@@ -67,7 +67,14 @@ public class DadoVirus : MonoBehaviour {
     {
         get
         {
-            return int.Parse(this.posicionSum.options[this.posicionSum.value].text);
+            if (CondicionSuma == "+")
+            {
+                return int.Parse(this.posicionSum.options[this.posicionSum.value].text);
+            }
+            else{
+                return -int.Parse(this.posicionSum.options[this.posicionSum.value].text);
+            }
+            
         }
 
     }
@@ -75,11 +82,11 @@ public class DadoVirus : MonoBehaviour {
     /// <summary>
     /// Condicion que hara el mientras valores + -
     /// </summary>
-    public int CondicionSuma
+    private string CondicionSuma
     {
         get
         {
-            return int.Parse(this.posicionSumCond.options[this.posicionSumCond.value].text);
+            return this.posicionSumCond.options[this.posicionSumCond.value].text;
         }
 
     }
