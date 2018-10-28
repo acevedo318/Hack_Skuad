@@ -30,12 +30,21 @@ public class ControladorPrincipal : MonoBehaviour
     private int tiempo = 0;
 
 
+    [SerializeField]
+    Player[] listaJugadores;
+
+    [SerializeField]
+    List<Player> agregadasTemporales, noAgregadasTemporales;
+
+    [SerializeField]
+    List<Player> jugadas;
+
     // Use this for initialization
     void Start()
     {
         esActivo = true;
         ActivarPanel(panelInicioJuego);
-
+        TurnoJugadores();
     }
 
     // Update is called once per frame
@@ -108,6 +117,58 @@ public class ControladorPrincipal : MonoBehaviour
     public void Ejecutar() {
         StartCoroutine(EjecutarJugadaAntivirus());
     }
+
+    public void TurnoJugadores()
+    {
+        int posicionInicial = 0;
+        int posicionFinal = listaJugadores.Length-1;
+        jugadas = new List<Player>();
+        noAgregadasTemporales = new List<Player>();
+        agregadasTemporales = new List<Player>();
+
+        for (int k = 0; k < 8; k++)
+        {
+            if (k == 4)
+            {
+                posicionInicial = 0;
+            }
+            print("Turno: " +k);
+            noAgregadasTemporales = new List<Player>();
+            agregadasTemporales = new List<Player>();
+            for (int j = posicionInicial; j < posicionFinal; j++)
+            {
+                agregadasTemporales.Add(listaJugadores[j]);
+                agregadasTemporales.Add(listaJugadores[listaJugadores.Length - 1]);
+            }
+
+            for (int i = 0; i < posicionInicial; i++)
+            {
+
+                noAgregadasTemporales.Add(listaJugadores[i]);
+                noAgregadasTemporales.Add(listaJugadores[listaJugadores.Length - 1]);
+            }
+
+            foreach (var item in agregadasTemporales)
+            {
+                jugadas.Add(item);
+            }
+
+            foreach (var item in noAgregadasTemporales)
+            {
+                jugadas.Add(item);
+            }
+
+            posicionInicial++;
+        }
+
+        foreach (var item in jugadas)
+        {
+            print(item.gameObject.name);
+        }
+        
+
+    }
+
 
 
 }
