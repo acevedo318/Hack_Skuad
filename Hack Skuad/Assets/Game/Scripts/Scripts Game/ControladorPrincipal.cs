@@ -29,8 +29,7 @@ public class ControladorPrincipal : MonoBehaviour
     // Variable inicial de tiempo transcurrido
     private int tiempo = 0;
 
-    int i = 0;
-    int opcion = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -93,19 +92,17 @@ public class ControladorPrincipal : MonoBehaviour
 
     public IEnumerator EjecutarJugadaAntivirus()
     {
-        if (playerAntivirus.ubicacionCorrecta2 == false)
+        int i = 0;
+        int opcion = 0;
+        do
         {
-            playerAntivirus.MoverVirus(playerAntivirus.tomarMovimientos()[i]);
-            i++;
-<<<<<<< HEAD
             yield return new WaitForSeconds(2f);
-            playerAntivirus.ubicacionCorrecta2 = false;
-
-        }
-=======
+            Debug.Log(playerAntivirus.tomarMovimientos()[i]);
+            opcion = playerAntivirus.tomarMovimientos()[i];
+            playerAntivirus.MoverVirus(opcion);
+            i++;
             playerAntivirus.ubicacionCorrecta2 = false;
         } while (i != playerAntivirus.tomarMovimientos().Count);    
->>>>>>> fca1fc23ff8d6997f150d4096fe24e39850ec0cf
     }
 
     public void Ejecutar() {

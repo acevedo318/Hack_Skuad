@@ -21,7 +21,6 @@ public class PlayerAntivirus : MonoBehaviour
     public ContenedorArray camino2;
     public ContenedorArray camino3;
     public ContenedorArray camino4;
-    public int posicionPub;
 
     // Velocidad de movimiento del player Antivirus
     private float velocidadMovimiento = 4f;
@@ -121,7 +120,6 @@ public class PlayerAntivirus : MonoBehaviour
             {
                 if (listaBotonDados[i].GetComponent<Image>().sprite.Equals(dadoAntivirus.ladosDado[j]))
                 {
-                  //  print(j);
                     listaMovimientos.Add(j);
                 }
             }      
@@ -129,14 +127,14 @@ public class PlayerAntivirus : MonoBehaviour
         return listaMovimientos;
     }
 
+    //GameObject[] arrayTemporal1; // Arreglo de tipo gameobject que almacenará un vector temporalmente
 
     // Método para mover al jugador Antivirus, según el parametro que se le envía, desde el método de tipo enum
     public void MoverVirus(int opcion)
     {
         Debug.Log("Opcion recibida número: " + opcion);
-        GameObject[] arrayTemporal1 = obtenerVector(); // En el vector temporal se almacena el vector en donde se encuentra ubicado el jugador antivirus en el instante
+        GameObject[]  arrayTemporal1 = obtenerVector(); // En el vector temporal se almacena el vector en donde se encuentra ubicado el jugador antivirus en el instante
         int posicion = obtenerPocisionVector(arrayTemporal1); // Se crea una variable temporal int de posicion, que almacena la posición en donde se encuentra el gameobject de posicion en su respectivo vector "camino"
-        posicionPub = posicion;
         if (opcion == 0) // Se evalua la opcion entregada por el parametro, si es abajo
         {
             Debug.Log("Aca esta entrando? abajo");
