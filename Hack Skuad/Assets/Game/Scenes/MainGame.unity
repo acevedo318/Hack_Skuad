@@ -1648,7 +1648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08354598, y: 0.058626547}
   m_AnchorMax: {x: 0.4483621, y: 0.7576266}
-  m_AnchoredPosition: {x: -0.33996582, y: 8}
+  m_AnchoredPosition: {x: -0.33999634, y: 8}
   m_SizeDelta: {x: -11, y: -75.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383451535
@@ -2509,7 +2509,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8dddd96d5ca79af4988905b4f241037a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6367,7 +6367,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6641,7 +6641,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 973744683}
         m_MethodName: TirarDadoColumna
         m_Mode: 1
@@ -6699,7 +6699,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8dddd96d5ca79af4988905b4f241037a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -8392,9 +8392,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+<<<<<<< HEAD
   dado: {fileID: 0}
   dados: []
   toggles: []
+=======
+  dados: []
+  caminos: {fileID: 0}
+  dadoVirus: {fileID: 0}
+>>>>>>> fca1fc23ff8d6997f150d4096fe24e39850ec0cf
 --- !u!1 &1540952009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1527875966762722, guid: 46f7107d1036c6e4ab3ee810163bb9dc,
@@ -8950,7 +8956,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 451689595}
   m_HandleRect: {fileID: 451689594}
   m_Direction: 0
+<<<<<<< HEAD
   m_Value: 1
+=======
+  m_Value: 0.5
+>>>>>>> fca1fc23ff8d6997f150d4096fe24e39850ec0cf
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9390,7 +9400,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8dddd96d5ca79af4988905b4f241037a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -11253,7 +11263,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8dddd96d5ca79af4988905b4f241037a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

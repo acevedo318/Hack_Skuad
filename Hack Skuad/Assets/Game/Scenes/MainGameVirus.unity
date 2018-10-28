@@ -1529,7 +1529,7 @@ GameObject:
   - component: {fileID: 151813028}
   - component: {fileID: 151813027}
   m_Layer: 5
-  m_Name: ListaPosicionesX (6)
+  m_Name: ListaPosicionesSumValor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1553,7 +1553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82500005, y: 0}
   m_AnchorMax: {x: 0.9052778, y: 0.19800001}
-  m_AnchoredPosition: {x: 0.2000122, y: 3.40728}
+  m_AnchoredPosition: {x: 0.2000122, y: 3.4072723}
   m_SizeDelta: {x: 2.811798, y: 5.9261627}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &151813027
@@ -2213,7 +2213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5685506, y: 0.11338626}
   m_AnchorMax: {x: 0.60087514, y: 0.14554505}
-  m_AnchoredPosition: {x: 1.2399979, y: 0}
+  m_AnchoredPosition: {x: 1.2399902, y: 0}
   m_SizeDelta: {x: 2.4800034, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &218764132
@@ -4601,7 +4601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.64000005, y: 0.21853758}
   m_AnchorMax: {x: 0.73043925, y: 0.4725379}
-  m_AnchoredPosition: {x: -1.8656998, y: 4.0018997}
+  m_AnchoredPosition: {x: -1.8656921, y: 4.0018997}
   m_SizeDelta: {x: -3.4653, y: 0.53583}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490438074
@@ -4885,7 +4885,7 @@ MonoBehaviour:
   panelUbicacionAntivirus: {fileID: 1626410833}
   ladoDadoRandomFila: 0
   ladoDadoRandomColumna: 0
-  RodarDado: {fileID: 0}
+  RodarDado: {fileID: 1196871646}
 --- !u!212 &531317812
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7056,7 +7056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5685506, y: 0.16654505}
   m_AnchorMax: {x: 0.60087514, y: 0.1971413}
-  m_AnchoredPosition: {x: 0.1800003, y: 1.5}
+  m_AnchoredPosition: {x: 0.17999268, y: 1.5}
   m_SizeDelta: {x: 2.4800034, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666923820
@@ -8056,6 +8056,7 @@ GameObject:
   - component: {fileID: 745421701}
   - component: {fileID: 745421703}
   - component: {fileID: 745421704}
+  - component: {fileID: 745421705}
   m_Layer: 10
   m_Name: JugadorInteger
   m_TagString: Player
@@ -8134,12 +8135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  dado: {fileID: 0}
   dados: []
-  toggles:
-  - {fileID: 2094729620}
-  - {fileID: 666923820}
-  - {fileID: 218764132}
+  caminos: {fileID: 1690732471}
+  dadoVirus: {fileID: 745421705}
 --- !u!114 &745421704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8152,6 +8150,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &745421705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745421700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53541ea59a1f9cf41a477db35613cf72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posicionY: {fileID: 1799040995}
+  posicionX: {fileID: 1684706218}
+  posicionSum: {fileID: 151813027}
+  posicionValorCond: {fileID: 1136931778}
+  posicionCondicional: {fileID: 1457265691}
+  posicionSumCond: {fileID: 2117365833}
 --- !u!1 &747139598
 GameObject:
   m_ObjectHideFlags: 0
@@ -12762,7 +12777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.7102051, y: -43.300003}
+  m_AnchoredPosition: {x: 1.7102051, y: -43.300007}
   m_SizeDelta: {x: -94.32, y: -103.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1133953596
@@ -12811,7 +12826,7 @@ GameObject:
   - component: {fileID: 1136931779}
   - component: {fileID: 1136931778}
   m_Layer: 5
-  m_Name: ListaPosicionesX (2)
+  m_Name: ListaPosicionesCondValor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12835,7 +12850,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82500005, y: 0.21853758}
   m_AnchorMax: {x: 0.9110001, y: 0.4725379}
-  m_AnchoredPosition: {x: 0.19999695, y: 2.7000008}
+  m_AnchoredPosition: {x: 0.2000122, y: 2.7000046}
   m_SizeDelta: {x: -0.1882019, y: -2.0738373}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136931778
@@ -16213,7 +16228,7 @@ GameObject:
   - component: {fileID: 1457265692}
   - component: {fileID: 1457265691}
   m_Layer: 5
-  m_Name: ListaPosicionesX (1)
+  m_Name: ListaPosicionesCondicion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16237,7 +16252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.73043925, y: 0.21853758}
   m_AnchorMax: {x: 0.8154392, y: 0.4725379}
-  m_AnchoredPosition: {x: -3.081009, y: 2.7000046}
+  m_AnchoredPosition: {x: -3.0809937, y: 2.7000046}
   m_SizeDelta: {x: 0.8117981, y: -2.0738373}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1457265691
@@ -17787,9 +17802,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  dado: {fileID: 0}
   dados: []
-  toggles: []
+  caminos: {fileID: 0}
+  dadoVirus: {fileID: 0}
 --- !u!1 &1540952009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1527875966762722, guid: 46f7107d1036c6e4ab3ee810163bb9dc,
@@ -18218,7 +18233,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 451689595}
   m_HandleRect: {fileID: 451689594}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19080,7 +19095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.62600005, y: 0}
   m_AnchorMax: {x: 0.721, y: 0.246}
-  m_AnchoredPosition: {x: -0.047828674, y: 0.21907043}
+  m_AnchoredPosition: {x: -0.047821045, y: 0.21907043}
   m_SizeDelta: {x: -0.10357, y: -0.44379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653977494
@@ -20643,7 +20658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -11.68, y: 1.7075005}
+  m_AnchoredPosition: {x: -11.679999, y: 1.7075005}
   m_SizeDelta: {x: -31.56, y: -8.585}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869022201
@@ -21302,8 +21317,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: EjecutarJugadaAntivirus
+      - m_Target: {fileID: 745421703}
+        m_MethodName: Ubicar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21810,7 +21825,7 @@ MonoBehaviour:
   panelUbicacionAntivirus: {fileID: 1626410833}
   ladoDadoRandomFila: 0
   ladoDadoRandomColumna: 0
-  RodarDado: {fileID: 0}
+  RodarDado: {fileID: 1196871646}
 --- !u!212 &2007523114
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22719,7 +22734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.22600001}
   m_AnchorMax: {x: 0.53325003, y: 0.25814134}
-  m_AnchoredPosition: {x: 0.7399998, y: 1.1300049}
+  m_AnchoredPosition: {x: 0.73999786, y: 1.1300049}
   m_SizeDelta: {x: 1.4799995, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094729620
@@ -22789,7 +22804,7 @@ GameObject:
   - component: {fileID: 2117365834}
   - component: {fileID: 2117365833}
   m_Layer: 5
-  m_Name: ListaPosicionesX (5)
+  m_Name: ListaPosicionesCondicionSum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22813,7 +22828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.721, y: 0.03327542}
   m_AnchorMax: {x: 0.80200005, y: 0.246}
-  m_AnchoredPosition: {x: 1.4190063, y: -2.59272}
+  m_AnchoredPosition: {x: 1.4190063, y: -2.5927124}
   m_SizeDelta: {x: 2.811798, y: 3.9261627}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2117365833
