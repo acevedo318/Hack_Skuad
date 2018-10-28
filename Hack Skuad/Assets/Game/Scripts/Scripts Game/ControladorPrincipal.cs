@@ -160,11 +160,6 @@ public class ControladorPrincipal : MonoBehaviour
 
             posicionInicial++;
         }
-
-        foreach (var item in jugadas)
-        {
-            print(item.gameObject.name);
-        }
         
 
     }
