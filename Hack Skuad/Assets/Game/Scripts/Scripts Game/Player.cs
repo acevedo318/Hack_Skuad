@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 	private Vector2 posicion;
 	[SerializeField]
 	private bool turno = false;
+    public string jugada;
 
     /// <summary>
     /// Inicializa una nueva instancia de la clase <see cref="Player"/>.

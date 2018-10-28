@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 17305f09867ea004c9d3348d057c9392
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: starlord_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
@@ -93,7 +94,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: starlord_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 12
+        width: 54
+        height: 101
+      alignment: 9
+      pivot: {x: 0.45506746, y: 0.13780113}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 504cb15d0f0d5b44a9890a40cd6bcfda
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

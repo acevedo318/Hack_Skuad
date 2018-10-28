@@ -16,6 +16,9 @@ public class PlayerAntivirus : MonoBehaviour
     bool puedeTirarDado = true;
     public AudioSource Desplazar;
 
+    [SerializeField]
+    Transform ContenedorDadosAntivirus;
+
     // Variables de tipo ContenedorArray que simulan los caminos por donde se va a mover el player Antivirus
     public ContenedorArray camino1;
     public ContenedorArray camino2;
@@ -101,7 +104,7 @@ public class PlayerAntivirus : MonoBehaviour
     // Método que realiza la invocación de los dados al momento que el virus está en su posición correcta al momento de iniciar el juego
     public void InvocarDadosPosicionamiento()
     {
-        Transform contenedorDados = GameObject.Find("ContenedorDadosAntivirus").GetComponent<Transform>();
+        Transform contenedorDados = ContenedorDadosAntivirus;
         GameObject dadoDefaultAnti;
         listaBotonDados = new List<GameObject>();
         for (int i = 0; i < 4; i++)
@@ -112,7 +115,7 @@ public class PlayerAntivirus : MonoBehaviour
     }
 
     public List<int> tomarMovimientos()
-    {     
+    {
         List<int> listaMovimientos = new List<int>();
         for (int i = 0; i < listaBotonDados.Count; i++)
         {
@@ -122,7 +125,7 @@ public class PlayerAntivirus : MonoBehaviour
                 {
                     listaMovimientos.Add(j);
                 }
-            }      
+            }
         }
         return listaMovimientos;
     }
@@ -133,12 +136,12 @@ public class PlayerAntivirus : MonoBehaviour
     public void MoverVirus(int opcion)
     {
         Debug.Log("Opcion recibida número: " + opcion);
-        GameObject[]  arrayTemporal1 = obtenerVector(); // En el vector temporal se almacena el vector en donde se encuentra ubicado el jugador antivirus en el instante
+        GameObject[] arrayTemporal1 = obtenerVector(); // En el vector temporal se almacena el vector en donde se encuentra ubicado el jugador antivirus en el instante
         int posicion = obtenerPocisionVector(arrayTemporal1); // Se crea una variable temporal int de posicion, que almacena la posición en donde se encuentra el gameobject de posicion en su respectivo vector "camino"
         if (opcion == 0) // Se evalua la opcion entregada por el parametro, si es abajo
         {
             Debug.Log("Aca esta entrando? abajo");
-            Desplazar.Play();
+            //Desplazar.Play();
             if (arrayTemporal1.Equals(camino1.listaPuntosDeCamino)) // Se evalua que el vector en la variable temporal sea igual al camino 1
             {
                 do // El personaje antivirus se moverá hasta el camino siguiente del camino 1, osea el camino 2
@@ -168,7 +171,7 @@ public class PlayerAntivirus : MonoBehaviour
         if (opcion == 1) // Se evalua la opcion entregada por el parametro, si es arriba
         {
             Debug.Log("Aca esta entrando? arriba");
-            Desplazar.Play();
+            //Desplazar.Play();
             if (arrayTemporal1.Equals(camino2.listaPuntosDeCamino)) // Se evalua que el vector en la variable temporal sea igual al camino 2
             {
                 do // El personaje antivirus se moverá hasta el camino anterior del camino 2, osea el camino 1
@@ -195,10 +198,10 @@ public class PlayerAntivirus : MonoBehaviour
             }
         }
 
-        if (opcion==2) // Se evalua la opcion entregada por el parametro, si es "derecha"
+        if (opcion == 2) // Se evalua la opcion entregada por el parametro, si es "derecha"
         {
             Debug.Log("Aca esta entrando? derecha");
-            Desplazar.Play();
+            //Desplazar.Play();
             do // El personaje antivirus se moverá en el mismo vector pero a una posición adelante
             {
                 this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion + 1].transform.position, Time.deltaTime * velocidadMovimiento2);
@@ -206,16 +209,16 @@ public class PlayerAntivirus : MonoBehaviour
             } while (!ubicacionCorrecta2); // El movimiento lo realizará hasta que la posición del jugador antivirus en el mundo sea igual a la de la posición siguiente 
         }
 
-        if (opcion==3) // Se evalua la opcion entregada por el parametro, si es "izquierda"
+        if (opcion == 3) // Se evalua la opcion entregada por el parametro, si es "izquierda"
         {
             Debug.Log("Aca esta entrando? izquierda");
-            Desplazar.Play();
+            //Desplazar.Play();
             do // El personaje antivirus se moverá en el mismo vector pero a una posición detrás
             {
                 this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion - 1].transform.position, Time.deltaTime * velocidadMovimiento2);
                 if (this.transform.position == arrayTemporal1[posicion - 1].transform.position) ubicacionCorrecta2 = true;
             } while (!ubicacionCorrecta2); // El movimiento lo realizará hasta que la posición del jugador antivirus en el mundo sea igual a la de la posición anterior
-        }  
+        }
     }
 
     GameObject[] arrayTemporal; // Arreglo de tipo gameobject que almacenará un vector temporalmente
@@ -258,5 +261,44 @@ public class PlayerAntivirus : MonoBehaviour
             }
         }
         return posicion;
+    }
+
+    public IEnumerator EjecutarJugadaAntivirus()
+    {
+        int i = 0;
+        int opcion = 0;
+        Debug.Log((player.jugada.Split(';')[0]));
+        do
+        {
+
+            yield return new WaitForSeconds(1f);
+            opcion = int.Parse(player.jugada.Substring(i, 1));
+            
+            MoverVirus(opcion);
+            i++;
+            ubicacionCorrecta2 = false;
+        } while (i != tomarMovimientos().Count);
+
+    }
+
+    public void EjecutarJugada()
+    {
+        StartCoroutine(EjecutarJugadaAntivirus());
+    }
+
+    public void EjecutarGuardar()
+    {
+        GuardarJugada();
+        
+    }
+
+    public void GuardarJugada()
+    {
+        player.jugada = "";
+        for (int i = 0; i < tomarMovimientos().Count; i++)
+        {
+            player.jugada += tomarMovimientos()[i];
+        }
+        //player.jugada += ";";
     }
 }

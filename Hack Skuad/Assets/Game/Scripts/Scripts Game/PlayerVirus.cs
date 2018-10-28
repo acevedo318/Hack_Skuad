@@ -7,8 +7,8 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerVirus : MonoBehaviour
 {
-	[SerializeField]
-	private Player player;
+    [SerializeField]
+    private Player player;
     [SerializeField]
     private GameObject[] dados;
     /// <summary>
@@ -20,40 +20,43 @@ public class PlayerVirus : MonoBehaviour
     [SerializeField]
     private DadoVirus dadoVirus;
 
-    private int posicionY,posicionX;
-    
+    private int posicionY, posicionX;
 
-	// Use this for initialization
-	void Start ()
-	{
-        
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
+
+    // Use this for initialization
+    void Start()
+    {
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     /// <summary>
     /// 
     /// </summary>
     public void Ubicar()
     {
-        posicionX = dadoVirus.PosicionX;
-        posicionY = dadoVirus.PosicionY;
+        posicionY = int.Parse(player.jugada.Substring(0, 1));
+
+        posicionX = int.Parse(player.jugada.Substring(1, 1));
+
 
         GameObject caminoY = caminos.transform.GetChild(posicionY).gameObject;
         GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[posicionX];
-        
+
         Vector2 ubicacion = new Vector2(caminoX.transform.position.x, caminoX.transform.position.y);
 
         transform.position = ubicacion;
 
-        
+
         StartCoroutine(MoverCondicional(caminoY));
 
-        
+
     }
 
     /// <summary>
@@ -62,10 +65,11 @@ public class PlayerVirus : MonoBehaviour
     /// <param name="caminoY"></param>
     IEnumerator MoverCondicional(GameObject caminoY)
     {
-        if (dadoVirus.Condicion == "<")
+
+        if (player.jugada[2].ToString() == "<")
         {
 
-            for (int i = dadoVirus.PosicionX; i < dadoVirus.ValorCondicion+1; i += dadoVirus.ValorASumar)
+            for (int i = posicionX; i < int.Parse(player.jugada.Substring(3,1)) + 1; i += int.Parse(player.jugada.Substring(4)))
             {
 
                 GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
@@ -75,9 +79,9 @@ public class PlayerVirus : MonoBehaviour
             }
 
         }
-        else if(dadoVirus.Condicion == ">")
+        else if(player.jugada[2].ToString() == ">")
         {
-            for (int i = dadoVirus.PosicionX; i > dadoVirus.ValorCondicion-1; i += dadoVirus.ValorASumar)
+            for (int i = posicionX; i > int.Parse(player.jugada.Substring(3, 1)) -1; i += int.Parse(player.jugada.Substring(4)))
             {
                 
                 GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
@@ -85,9 +89,9 @@ public class PlayerVirus : MonoBehaviour
                 StartCoroutine(Mover(caminoX.transform.position));
                 yield return new WaitForSeconds(3f);
             }
-        }
-
-        print("Fin Turno: " + this.gameObject.name);
+        } 
+        yield return new WaitForSeconds(3f);
+        
     }
 
     /// <summary>
@@ -102,6 +106,19 @@ public class PlayerVirus : MonoBehaviour
         transform.position = direccion3;
         yield return new WaitForSeconds(1f);
 
+    }
+
+    /// <summary>
+    /// string con formato posicionY,posicionX,condicion,valCondicion,(+-)ValorASumar
+    /// </summary>
+    public void GuardarJugada()
+    {
+        player.jugada = "";
+        player.jugada += dadoVirus.PosicionY;
+        player.jugada += dadoVirus.PosicionX;
+        player.jugada += dadoVirus.Condicion;
+        player.jugada += dadoVirus.ValorCondicion;
+        player.jugada += dadoVirus.ValorASumar;
     }
    
 }

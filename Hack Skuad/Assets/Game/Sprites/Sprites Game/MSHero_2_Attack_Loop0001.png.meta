@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 362f9466aba129541956b0642021b756
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: MSHero_2_Attack_Loop0001_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,7 +94,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MSHero_2_Attack_Loop0001_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 2
+        width: 75
+        height: 110
+      alignment: 9
+      pivot: {x: 0.52759165, y: 0.17163694}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb94ec194791c1b4088f6a9e1a177f10
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

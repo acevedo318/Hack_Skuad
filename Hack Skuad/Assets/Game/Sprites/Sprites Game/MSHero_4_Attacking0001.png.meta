@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 48b2abdb3f726d444b050dc4656797fb
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: MSHero_4_Attacking0001_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,7 +94,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MSHero_4_Attacking0001_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2
+        width: 82
+        height: 97
+      alignment: 9
+      pivot: {x: 0.68583053, y: 0.20132792}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2dc1af8103de2e47ad17eacd1ea75dc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
