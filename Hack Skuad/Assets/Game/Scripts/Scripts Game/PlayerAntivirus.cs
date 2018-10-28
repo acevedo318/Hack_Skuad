@@ -14,6 +14,7 @@ public class PlayerAntivirus : MonoBehaviour
     [SerializeField]
     private Dado dadoColumna, dadoFila;
     bool puedeTirarDado = true;
+    public AudioSource Desplazar;
 
     // Variables de tipo ContenedorArray que simulan los caminos por donde se va a mover el player Antivirus
     public ContenedorArray camino1;
@@ -137,6 +138,7 @@ public class PlayerAntivirus : MonoBehaviour
         if (opcion == 0) // Se evalua la opcion entregada por el parametro, si es abajo
         {
             Debug.Log("Aca esta entrando? abajo");
+            Desplazar.Play();
             if (arrayTemporal1.Equals(camino1.listaPuntosDeCamino)) // Se evalua que el vector en la variable temporal sea igual al camino 1
             {
                 do // El personaje antivirus se moverá hasta el camino siguiente del camino 1, osea el camino 2
@@ -166,6 +168,7 @@ public class PlayerAntivirus : MonoBehaviour
         if (opcion == 1) // Se evalua la opcion entregada por el parametro, si es arriba
         {
             Debug.Log("Aca esta entrando? arriba");
+            Desplazar.Play();
             if (arrayTemporal1.Equals(camino2.listaPuntosDeCamino)) // Se evalua que el vector en la variable temporal sea igual al camino 2
             {
                 do // El personaje antivirus se moverá hasta el camino anterior del camino 2, osea el camino 1
@@ -195,6 +198,7 @@ public class PlayerAntivirus : MonoBehaviour
         if (opcion==2) // Se evalua la opcion entregada por el parametro, si es "derecha"
         {
             Debug.Log("Aca esta entrando? derecha");
+            Desplazar.Play();
             do // El personaje antivirus se moverá en el mismo vector pero a una posición adelante
             {
                 this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion + 1].transform.position, Time.deltaTime * velocidadMovimiento2);
@@ -205,6 +209,7 @@ public class PlayerAntivirus : MonoBehaviour
         if (opcion==3) // Se evalua la opcion entregada por el parametro, si es "izquierda"
         {
             Debug.Log("Aca esta entrando? izquierda");
+            Desplazar.Play();
             do // El personaje antivirus se moverá en el mismo vector pero a una posición detrás
             {
                 this.transform.position = Vector2.MoveTowards(this.transform.position, arrayTemporal1[posicion - 1].transform.position, Time.deltaTime * velocidadMovimiento2);
