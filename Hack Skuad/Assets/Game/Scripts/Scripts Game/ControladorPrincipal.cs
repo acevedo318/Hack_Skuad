@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ControladorPrincipal : MonoBehaviour
 {
@@ -57,6 +58,11 @@ public class ControladorPrincipal : MonoBehaviour
 
     int ronda = 8, tiempoProgramacion = 0;
 
+    [SerializeField]
+    TextMeshProUGUI textoRonda;
+
+    List<Vector3> posicionesIniciales;
+
     // Use this for initialization
     void Start()
     {
@@ -65,9 +71,14 @@ public class ControladorPrincipal : MonoBehaviour
         ActivarPanel(panelInicioJuego);
         TurnoJugadores();
         listaTemporalJugadores = new List<Player>();
+        textoRonda.text += ronda;
+        ResetearJugadores();
+        
         
 
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -199,7 +210,6 @@ public class ControladorPrincipal : MonoBehaviour
         {
             
          jugadorActual.GetComponent<PlayerAntivirus>().EjecutarGuardar();
-            print("Aca esta entrando esta vaina==??? o no se le da la ganaS");
 
         }
     }
@@ -287,12 +297,45 @@ public class ControladorPrincipal : MonoBehaviour
             RealizarJugada();
             yield return new WaitForSeconds(15f);
             print(i + "EsperaJugador" + jugadorActual.gameObject.name);
+            
+            
         }
         yield return new WaitForSeconds(1f);
+
+        
+
         ronda--;
+        yield return new WaitForSeconds(5f);
+        ResetearJugadores();
+        textoRonda.text = textoRonda.text.Substring(0, textoRonda.text.Length - 2)+ronda;
         Jugada();
     }
 
+    
+    public void ResetearJugadores()
+    {
+        if (!verificarPrimerTurno)
+        {
+            print("Aca entra");
+            posicionesIniciales = new List<Vector3>();
+            foreach (var item in listaJugadores)
+            {
+                posicionesIniciales.Add(item.transform.position);
+
+                
+            }
+            verificarPrimerTurno = true;
+        }
+        else
+        {
+            print("Aca tambien?");
+            for (int i = 0; i < listaJugadores.Count; i++)
+            {
+                listaJugadores[i].transform.position = posicionesIniciales[i];
+            }
+        }
+        
+    }
 
 
 
