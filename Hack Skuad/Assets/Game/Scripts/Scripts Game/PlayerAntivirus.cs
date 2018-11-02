@@ -26,7 +26,7 @@ public class PlayerAntivirus : MonoBehaviour
     public ContenedorArray camino4;
 
     // Velocidad de movimiento del player Antivirus
-    private float velocidadMovimiento = 4f;
+    private float velocidadMovimiento = 2f;
     private float velocidadMovimiento2 = 0.1f;
 
     // Variable booleana para validar que la ubicacion del player Antivirus, sea correcta en el mundo del juego
@@ -41,6 +41,7 @@ public class PlayerAntivirus : MonoBehaviour
     List<GameObject> listaBotonDados;
 
     DadoAntivirus dadoAntivirus;
+    Animator animadorAntivirus;
     // Use this for initialization
     void Start()
     {
@@ -48,6 +49,7 @@ public class PlayerAntivirus : MonoBehaviour
         ubicacionCorrecta = false; // Se inicializa la posición del Antivirus como false
         ubicacionCorrecta2 = false;
         dadoAntivirus = botonDado.GetComponent<DadoAntivirus>();
+        animadorAntivirus = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -71,6 +73,7 @@ public class PlayerAntivirus : MonoBehaviour
     // Pasándole como parametros los valores de la fila y la columna que deben ser arrojados por el dado
     public void UbicarAntivirus(int fila, int columna)
     {
+        animadorAntivirus.SetBool("Caminata",true);
         switch (fila)
         {
             case 0:
@@ -78,6 +81,7 @@ public class PlayerAntivirus : MonoBehaviour
                 if (this.transform.position == camino1.listaPuntosDeCamino[columna].transform.position) // Se evalúa que la posición a la que se dirigío es correcta
                 {
                     ubicacionCorrecta = true;
+                    animadorAntivirus.SetBool("Caminata", false);
                 }
                 break;
             case 1:
@@ -85,6 +89,7 @@ public class PlayerAntivirus : MonoBehaviour
                 if (this.transform.position == camino2.listaPuntosDeCamino[columna].transform.position)
                 {
                     ubicacionCorrecta = true;
+                    animadorAntivirus.SetBool("Caminata", false);
                 }
                 break;
             case 2:
@@ -92,6 +97,7 @@ public class PlayerAntivirus : MonoBehaviour
                 if (this.transform.position == camino3.listaPuntosDeCamino[columna].transform.position)
                 {
                     ubicacionCorrecta = true;
+                    animadorAntivirus.SetBool("Caminata", false);
                 }
                 break;
             case 3:
@@ -99,9 +105,11 @@ public class PlayerAntivirus : MonoBehaviour
                 if (this.transform.position == camino4.listaPuntosDeCamino[columna].transform.position)
                 {
                     ubicacionCorrecta = true;
+                    animadorAntivirus.SetBool("Caminata", false);
                 }
                 break;
         }
+        
     }
 
     // Método que realiza la invocación de los dados al momento que el virus está en su posición correcta al momento de iniciar el juego

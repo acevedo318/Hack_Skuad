@@ -78,6 +78,11 @@ public class ControladorPrincipal : MonoBehaviour
 
     Coroutine coroutine;
 
+    [SerializeField]
+    TextMeshProUGUI textoVictoriaVirus, textoVictoriaAntivirus;
+
+    
+
     // Use this for initialization
     void Start()
     {
@@ -126,16 +131,18 @@ public class ControladorPrincipal : MonoBehaviour
         if (puntajeGlobal > 64 && vectorComprobacionDados[0]==false) {
             playerAntivirus.AgregarDadosAdicionales();
             vectorComprobacionDados[0] = true;
-        }
-        if (puntajeGlobal > 79 && vectorComprobacionDados[1] == false)
+        }else if (puntajeGlobal > 79 && vectorComprobacionDados[1] == false)
         {
             playerAntivirus.AgregarDadosAdicionales();
             vectorComprobacionDados[1] = true;
-        }
-        if (puntajeGlobal > 89 && vectorComprobacionDados[2] == false)
+        }else if (puntajeGlobal > 89 && vectorComprobacionDados[2] == false)
         {
             playerAntivirus.AgregarDadosAdicionales();
             vectorComprobacionDados[2] = true;
+        }
+        if (puntajeGlobal > 99)
+        {
+            FinDeJuego();
         }
     }
 
@@ -372,8 +379,15 @@ public class ControladorPrincipal : MonoBehaviour
             yield return new WaitForSeconds(8.6f);
         }
         
+        
+
         textoActivo.SetActive(false);
         yield return new WaitForSeconds(1f);
+
+        if (this.ronda <  1)
+        {
+            FinDeJuego();
+        }
 
         ronda--;
         textoActivo = textosDeTurnos[0];
@@ -442,5 +456,22 @@ public class ControladorPrincipal : MonoBehaviour
         return listaJugadores[listaJugadores.Count-1].transform;
     }
 
+    public void FinDeJuego()
+    {
+        StopAllCoroutines();
+        cartas.SetActive(false);
+        textoActivo.SetActive(false);
+        if (ronda < 1)
+        {
+            
+            textoVictoriaAntivirus.gameObject.SetActive(true);
+            
+        }
+        else
+        {
+            textoVictoriaVirus.gameObject.SetActive(true);
+            
+        }
+    }
 
 }

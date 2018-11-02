@@ -10,10 +10,11 @@ public class PhotonConnect : Photon.MonoBehaviour {
 	public string versionName = "0.1";
     private photonHandler photonHandler;
     private bool joinRoom = false;
+    bool toggleGUI = true;
 
-	// En el caso de que no haya coneccion se procede a crear una nueva coneccion y se le asigna la version 
-	// se llama la funcion para mantener la pantalla siempre encendida.
-	private void Awake(){
+    // En el caso de que no haya coneccion se procede a crear una nueva coneccion y se le asigna la version 
+    // se llama la funcion para mantener la pantalla siempre encendida.
+    private void Awake(){
         if (!PhotonNetwork.connected)
         {
            PhotonNetwork.ConnectUsingSettings(versionName);
@@ -78,32 +79,39 @@ public class PhotonConnect : Photon.MonoBehaviour {
     /// </summary>
     private void OnGUI()
     {
+        toggleGUI = GUI.Toggle(new Rect((Screen.width) - 50, 0, 200, 200), toggleGUI, ".");
+
         GUI.enabled = false;
-        GUILayout.TextArea(PhotonNetwork.countOfPlayers.ToString());
-        GUILayout.TextArea(PhotonNetwork.connectionState.ToString());
-		GUILayout.TextArea(PhotonNetwork.GetPing().ToString());
-        GUILayout.TextArea("In Room= " + PhotonNetwork.countOfPlayersInRooms);
-        //Centro
-        GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, 0, 200, 200));
-        GUILayout.TextArea(this.photonHandler.Identificador);
-        GUILayout.EndArea();
-
-        if (joinRoom)
+        if (this.toggleGUI)
         {
-            GUILayout.BeginArea(new Rect((Screen.width) - 200, 0, 200, 200));
-            GUILayout.TextArea("Nombre de sala: \n"+ PhotonNetwork.room.Name);
-            GUILayout.TextArea("Jugadores");
-            foreach (var item in PhotonNetwork.playerList)
-            {
-                GUILayout.TextArea(item.NickName);
-            }
+            
+            GUILayout.TextArea(PhotonNetwork.countOfPlayers.ToString());
+            GUILayout.TextArea(PhotonNetwork.connectionState.ToString());
+            GUILayout.TextArea(PhotonNetwork.GetPing().ToString());
+            GUILayout.TextArea("In Room= " + PhotonNetwork.countOfPlayersInRooms);
+            //Centro
+            GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, 0, 200, 200));
+            GUILayout.TextArea(this.photonHandler.Identificador);
             GUILayout.EndArea();
-        }
 
+            if (joinRoom)
+            {
+                GUILayout.BeginArea(new Rect((Screen.width) - 200, 0, 200, 200));
+                GUILayout.TextArea("Nombre de sala: \n" + PhotonNetwork.room.Name);
+                GUILayout.TextArea("Jugadores");
+                foreach (var item in PhotonNetwork.playerList)
+                {
+                    GUILayout.TextArea(item.NickName);
+                }
+                GUILayout.EndArea();
+            }
+
+            
+        }
         GUI.enabled = true;
-       
-        
-		
+
+
+
     }
 	
 }
