@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Data;
 using System.Data.SqlClient;
 using System;
 
@@ -17,7 +16,7 @@ public class Conexion : MonoBehaviour
     {
         connectionstring = @"Data Source=USER;user id=sa; password=espinosa18;Initial Catalog=DbHackSquad;Integrated Security=True;";
 
-        SqlConnection dbConnection = new SqlConnection(connectionstring);
+       SqlConnection dbConnection = new SqlConnection(connectionstring);
 
         try
         {
