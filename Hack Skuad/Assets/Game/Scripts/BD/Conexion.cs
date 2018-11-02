@@ -14,7 +14,7 @@ public class Conexion : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        connectionstring = @"Data Source=USER;user id=sa; password=espinosa18;Initial Catalog=DbHackSquad;Integrated Security=True;";
+        connectionstring = @"Data Source=USER;Initial Catalog=DbHackSquad;User ID=barragan;Integrated Security=True;";
 
        SqlConnection dbConnection = new SqlConnection(connectionstring);
 
@@ -23,7 +23,7 @@ public class Conexion : MonoBehaviour
             dbConnection.Open();
             Debug.Log("Connected to database.");
         }
-        catch (Exception exception)
+        catch (SqlException exception)
         {
             Debug.LogWarning("Se perdio la conexion");
             Debug.LogWarning(exception.ToString());
