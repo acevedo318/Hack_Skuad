@@ -3460,7 +3460,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0.16429622}
-  m_AnchoredPosition: {x: -48.106934, y: -5.799919}
+  m_AnchoredPosition: {x: -48.106934, y: -5.799904}
   m_SizeDelta: {x: 96.183, y: 3.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &455633673
@@ -8425,6 +8425,7 @@ GameObject:
   - component: {fileID: 1214293780}
   - component: {fileID: 1214293779}
   - component: {fileID: 1214293782}
+  - component: {fileID: 1214293783}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -8486,6 +8487,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf9437277806e6940a20a08913b825d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1214293783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1214293778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a90d8c3b285e9f48a057cc640e2247a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1217304019
@@ -10969,7 +10981,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8aacd3146e17043802050e6bb3fd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URIDataBase: 
 --- !u!1 &1535410718
 GameObject:
   m_ObjectHideFlags: 0
@@ -11073,7 +11084,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0.16429622}
-  m_AnchoredPosition: {x: -48.106934, y: -5.799919}
+  m_AnchoredPosition: {x: -48.106934, y: -5.799904}
   m_SizeDelta: {x: 96.183, y: 3.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1535567653
