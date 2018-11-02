@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/UIGame.unity
     guid: f8c7d29d0d516a045bf478402bbfb2fb
   - enabled: 1
-    path: Assets/Game/Scenes/MainGame.unity
+    path: Assets/Game/Scenes/Test.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Game/Scenes/TestScene.unity
+    path: Assets/Game/Scenes/MainGame.unity
     guid: 21d544294a25e5b459d62f35371ee6a3
+  - enabled: 1
+    path: Assets/Game/Scenes/JuegoOffline.unity
+    guid: 773462b75aa57574e80759c3ff957500
   m_configObjects: {}

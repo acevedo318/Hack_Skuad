@@ -58,6 +58,7 @@ public class PlayerVirus : MonoBehaviour
 
         StartCoroutine(MoverCondicional(caminoY));
 
+        
 
     }
 
@@ -77,9 +78,9 @@ public class PlayerVirus : MonoBehaviour
                 GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
 
                 StartCoroutine(Mover(caminoX.transform.position));
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(1f);
             }
-
+            
         }
         else if (player.jugada[2].ToString() == ">")
         {
@@ -89,10 +90,13 @@ public class PlayerVirus : MonoBehaviour
                 GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
 
                 StartCoroutine(Mover(caminoX.transform.position));
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(1f);
             }
+            
         }
-        yield return new WaitForSeconds(3f);
+        print(controladorPrincipal.terminarJugada);
+        
+        yield return new WaitForSeconds(1f);
 
     }
 
@@ -148,7 +152,24 @@ public class PlayerVirus : MonoBehaviour
         {
             this.controladorPrincipal.QuitarPuntaje();
         }
+        for (int i = 0; i < controladorPrincipal.ObtenerVirus().Length; i++)
+        {
+            if (this.transform != controladorPrincipal.ObtenerVirus()[i]) {
+                if (this.transform.position == controladorPrincipal.ObtenerVirus()[i].position)
+                {
+                    this.controladorPrincipal.QuitarPuntaje();
+                }
+            }
+        }
 
+    }
+
+    public void VerificarChoqueAntivirus()
+    {
+        if (this.transform.position == this.controladorPrincipal.ObtenerAntivirus().position)
+        {
+            this.controladorPrincipal.QuitarPuntaje();
+        }
 
     }
 
