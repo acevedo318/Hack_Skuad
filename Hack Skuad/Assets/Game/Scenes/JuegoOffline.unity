@@ -1045,7 +1045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &49644055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3099858, g: 0.36424294, b: 0.8113208, a: 0.26666668}
+  m_Color: {r: 0.30588236, g: 0.29803923, b: 0.5176471, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3004,6 +3004,7 @@ GameObject:
   - component: {fileID: 245613566}
   - component: {fileID: 245613568}
   - component: {fileID: 245613567}
+  - component: {fileID: 245613569}
   m_Layer: 10
   m_Name: JugadorDouble
   m_TagString: Player
@@ -3117,6 +3118,18 @@ MonoBehaviour:
   dados: []
   caminos: {fileID: 869623981}
   dadoVirus: {fileID: 245613567}
+--- !u!114 &245613569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245613563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1dd3fcc22ee8a4ca1f227ee9f553b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipoDeCarta: 2
 --- !u!1 &261774812
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,7 +3428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3099858, g: 0.36424294, b: 0.8113208, a: 0.26666668}
+  m_Color: {r: 0.30588236, g: 0.29803923, b: 0.5176471, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5551,9 +5564,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: -17}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &490783619
 MonoBehaviour:
@@ -6905,6 +6918,9 @@ MonoBehaviour:
   - {fileID: 120035770}
   - {fileID: 532217070}
   textoRonda: {fileID: 2056415643}
+  cartas: {fileID: 190157341}
+  ListaDecartas: []
+  puntajeGlobal: 0
 --- !u!4 &590852538
 Transform:
   m_ObjectHideFlags: 0
@@ -7018,6 +7034,7 @@ GameObject:
   - component: {fileID: 595188517}
   - component: {fileID: 595188519}
   - component: {fileID: 595188518}
+  - component: {fileID: 595188520}
   m_Layer: 10
   m_Name: JugadorString
   m_TagString: Player
@@ -7131,6 +7148,18 @@ MonoBehaviour:
   dados: []
   caminos: {fileID: 869623981}
   dadoVirus: {fileID: 595188518}
+--- !u!114 &595188520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 595188514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1dd3fcc22ee8a4ca1f227ee9f553b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipoDeCarta: 1
 --- !u!1 &609038667
 GameObject:
   m_ObjectHideFlags: 0
@@ -8470,9 +8499,9 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 20}
+  m_SizeDelta: {x: -17, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &738462871
 MonoBehaviour:
@@ -10139,9 +10168,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 20, y: -17}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &869259830
 MonoBehaviour:
@@ -10182,7 +10211,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1034818794}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10849,7 +10878,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1014348786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -10991,7 +11020,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13955,7 +13984,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16885,6 +16914,7 @@ GameObject:
   - component: {fileID: 1551235262}
   - component: {fileID: 1551235264}
   - component: {fileID: 1551235263}
+  - component: {fileID: 1551235265}
   m_Layer: 10
   m_Name: JugadorBoolean
   m_TagString: Player
@@ -16998,6 +17028,18 @@ MonoBehaviour:
   dados: []
   caminos: {fileID: 869623981}
   dadoVirus: {fileID: 1551235263}
+--- !u!114 &1551235265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1551235259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1dd3fcc22ee8a4ca1f227ee9f553b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipoDeCarta: 3
 --- !u!1 &1560824231
 GameObject:
   m_ObjectHideFlags: 0
@@ -17973,7 +18015,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00003679477, y: -7.0168676e-10}
+  m_AnchoredPosition: {x: -0.00003679477, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1641512285
@@ -19172,7 +19214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1776839563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20732,10 +20774,10 @@ RectTransform:
   m_Father: {fileID: 49644055}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.8154392, y: 0.43140343}
-  m_AnchorMax: {x: 0.8765416, y: 0.7125374}
-  m_AnchoredPosition: {x: -103.98999, y: 44.628}
-  m_SizeDelta: {x: -6.919998, y: -6.119999}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 110.01001, y: 55.128}
+  m_SizeDelta: {x: 31.080002, y: 34.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1922068071
 MonoBehaviour:
@@ -21553,6 +21595,7 @@ GameObject:
   - component: {fileID: 2014711175}
   - component: {fileID: 2014711177}
   - component: {fileID: 2014711176}
+  - component: {fileID: 2014711178}
   m_Layer: 10
   m_Name: JugadorInteger
   m_TagString: Player
@@ -21666,6 +21709,18 @@ MonoBehaviour:
   dados: []
   caminos: {fileID: 869623981}
   dadoVirus: {fileID: 2014711176}
+--- !u!114 &2014711178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2014711172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1dd3fcc22ee8a4ca1f227ee9f553b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipoDeCarta: 0
 --- !u!1 &2021307501
 GameObject:
   m_ObjectHideFlags: 0

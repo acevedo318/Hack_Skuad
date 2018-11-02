@@ -63,6 +63,16 @@ public class ControladorPrincipal : MonoBehaviour
 
     List<Vector3> posicionesIniciales;
 
+
+    [SerializeField]//@acevedo
+    GameObject cartas;
+
+
+    public List<GameObject> ListaDecartas;
+
+    [SerializeField]
+    int puntajeGlobal = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -73,12 +83,38 @@ public class ControladorPrincipal : MonoBehaviour
         listaTemporalJugadores = new List<Player>();
         textoRonda.text += ronda;
         ResetearJugadores();
-        
+        AñadirTipoCarta();
         
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    void AñadirTipoCarta()
+    {
+        this.ListaDecartas = new List<GameObject>();
 
+        foreach (Transform hijo in this.cartas.transform)
+        {
+
+            ListaDecartas.Add(hijo.gameObject);
+
+        }
+
+    }
+
+    //Añado 2
+    public void SumarPuntaje()
+    {
+        puntajeGlobal += 2;
+    }
+
+    //Retiro 2
+    public void QuitarPuntaje()
+    {
+        puntajeGlobal -= 2;
+    }
 
     // Update is called once per frame
     void Update()

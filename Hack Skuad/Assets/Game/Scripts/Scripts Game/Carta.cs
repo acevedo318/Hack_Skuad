@@ -14,6 +14,10 @@ public class Carta: MonoBehaviour
     // double
     // bool
     // Con esto se busca hacer que cada carta tenga un tipo diferente
-    private enum tipoCarta { Integer, String, Double, Bool }
+    public enum tipoCarta { Integer, String, Double, Bool }
 
+    public string ObtenerTipoCarta()
+    {
+        return this.tipoDeCarta.ToString();
+    }
 }

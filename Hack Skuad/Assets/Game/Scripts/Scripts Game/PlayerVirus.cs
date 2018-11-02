@@ -5,6 +5,7 @@ using UnityEngine.UI;
 /// <summary>
 /// La clase del jugador Virus
 /// </summary>
+[RequireComponent(typeof(Carta))]
 public class PlayerVirus : MonoBehaviour
 {
     [SerializeField]
@@ -23,9 +24,13 @@ public class PlayerVirus : MonoBehaviour
     private int posicionY, posicionX;
 
 
+    ControladorPrincipal controladorPrincipal;//@acevedo
+
+
     // Use this for initialization
     void Start()
     {
+        controladorPrincipal = FindObjectOfType<ControladorPrincipal>();
 
 
     }
@@ -69,7 +74,7 @@ public class PlayerVirus : MonoBehaviour
         if (player.jugada[2].ToString() == "<")
         {
 
-            for (int i = posicionX; i < int.Parse(player.jugada.Substring(3,1)) + 1; i += int.Parse(player.jugada.Substring(4)))
+            for (int i = posicionX; i < int.Parse(player.jugada.Substring(3, 1)) + 1; i += int.Parse(player.jugada.Substring(4)))
             {
 
                 GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
@@ -79,19 +84,19 @@ public class PlayerVirus : MonoBehaviour
             }
 
         }
-        else if(player.jugada[2].ToString() == ">")
+        else if (player.jugada[2].ToString() == ">")
         {
-            for (int i = posicionX; i > int.Parse(player.jugada.Substring(3, 1)) -1; i += int.Parse(player.jugada.Substring(4)))
+            for (int i = posicionX; i > int.Parse(player.jugada.Substring(3, 1)) - 1; i += int.Parse(player.jugada.Substring(4)))
             {
-                
+
                 GameObject caminoX = caminoY.GetComponent<ContenedorArray>().listaPuntosDeCamino[i];
 
                 StartCoroutine(Mover(caminoX.transform.position));
                 yield return new WaitForSeconds(3f);
             }
-        } 
+        }
         yield return new WaitForSeconds(3f);
-        
+
     }
 
     /// <summary>
@@ -104,7 +109,9 @@ public class PlayerVirus : MonoBehaviour
 
         Vector3 direccion3 = direccion;
         transform.position = direccion3;
+        ControlarPuntuacion();
         yield return new WaitForSeconds(1f);
+
 
     }
 
@@ -120,6 +127,28 @@ public class PlayerVirus : MonoBehaviour
         player.jugada += dadoVirus.ValorCondicion;
         player.jugada += dadoVirus.ValorASumar;
     }
-   
+
+    public void ControlarPuntuacion()
+    {
+        foreach (var carta in this.controladorPrincipal.ListaDecartas)
+        {
+
+            if (carta.transform.position == this.transform.position)
+            {
+                if (carta.GetComponent<Carta>().ObtenerTipoCarta() == this.GetComponent<Carta>().ObtenerTipoCarta())
+                {
+                    this.controladorPrincipal.SumarPuntaje();
+                }
+                else
+                {
+                    this.controladorPrincipal.QuitarPuntaje();
+                }
+            }
+
+        }
+
+
+    }
+
 }
 
