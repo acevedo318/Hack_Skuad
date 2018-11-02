@@ -8,14 +8,17 @@ public class Carta: MonoBehaviour
     [SerializeField]
     tipoCarta tipoDeCarta;
 
-	/// <sumary>
-	/// Inicialización de las variables de tipo "enum"
-	/// Integer
-	/// String
-	/// Double
-	/// Bool
-	/// para que cada carta tenga un tipo de variable diferente
-	/// </sumary>
-    private enum tipoCarta { Integer, String, Double, Bool }
+    // Inicialización de las variables de tipo enum
+    // integer
+    // string
+    // double
+    // bool
+    // Con esto se busca hacer que cada carta tenga un tipo diferente
+    public enum tipoCarta { Integer, String, Double, Bool }
+
+    public string ObtenerTipoCarta()
+    {
+        return this.tipoDeCarta.ToString();
+    }
 
 }
