@@ -59,7 +59,7 @@ public class ControladorPrincipal : MonoBehaviour
     int ronda = 8, tiempoProgramacion = 0;
 
     [SerializeField]
-    TextMeshProUGUI textoRonda;
+    TextMeshProUGUI textoRonda,textopuntajeGlobal;
 
     List<Vector3> posicionesIniciales;
 
@@ -82,10 +82,17 @@ public class ControladorPrincipal : MonoBehaviour
         TurnoJugadores();
         listaTemporalJugadores = new List<Player>();
         textoRonda.text += ronda;
+        this.textopuntajeGlobal = GameObject.Find("PuntajeGlobal").GetComponent<TextMeshProUGUI>();
         ResetearJugadores();
         AgregarTipoCarta();
+        ActualizarPuntaje();
         
 
+    }
+
+    public void ActualizarPuntaje()
+    {
+        this.textopuntajeGlobal.text = "Puntaje Global: " + this.puntajeGlobal;
     }
 
     /// <summary>
@@ -108,12 +115,14 @@ public class ControladorPrincipal : MonoBehaviour
     public void SumarPuntaje()
     {
         puntajeGlobal += 2;
+        ActualizarPuntaje();
     }
 
     //Retiro 2
     public void QuitarPuntaje()
     {
         puntajeGlobal -= 2;
+        ActualizarPuntaje();
     }
 
 
