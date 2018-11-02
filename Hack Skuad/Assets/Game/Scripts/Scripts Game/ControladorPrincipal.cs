@@ -384,7 +384,22 @@ public class ControladorPrincipal : MonoBehaviour
         
     }
 
+    public Transform[] ObtenerVirus()
+    {
+        Transform[] transformsVirus = new Transform[listaJugadores.Count-1];
 
+        for (int i = 0; i < listaJugadores.Count-1; i++)
+        {
+            transformsVirus[i] = listaJugadores[i].transform;
+        }
+
+        return transformsVirus;
+    }
+
+    public Transform ObtenerAntivirus()
+    {
+        return listaJugadores[listaJugadores.Count-1].transform;
+    }
 
 
 }

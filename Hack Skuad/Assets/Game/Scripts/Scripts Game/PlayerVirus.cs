@@ -144,6 +144,11 @@ public class PlayerVirus : MonoBehaviour
 
         }
 
+        if (this.transform.position == this.controladorPrincipal.ObtenerAntivirus().position)
+        {
+            this.controladorPrincipal.QuitarPuntaje();
+        }
+
 
     }
 
