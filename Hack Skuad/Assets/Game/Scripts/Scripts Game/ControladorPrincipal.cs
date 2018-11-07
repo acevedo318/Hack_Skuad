@@ -59,9 +59,29 @@ public class ControladorPrincipal : MonoBehaviour
     int ronda = 8, tiempoProgramacion = 0;
 
     [SerializeField]
-    TextMeshProUGUI textoRonda;
+    TextMeshProUGUI textoRonda, textopuntajeGlobal, textoReloj;
 
     List<Vector3> posicionesIniciales;
+
+    [SerializeField]//@acevedo
+    GameObject cartas;
+
+
+    public List<GameObject> ListaDecartas;
+
+    [SerializeField]
+    int puntajeGlobal = 0;
+
+    public bool terminarJugada = false;
+
+    int reloj = 0;
+
+    Coroutine coroutine;
+
+    [SerializeField]
+    TextMeshProUGUI textoVictoriaVirus, textoVictoriaAntivirus;
+
+    
 
     // Use this for initialization
     void Start()
@@ -72,10 +92,65 @@ public class ControladorPrincipal : MonoBehaviour
         TurnoJugadores();
         listaTemporalJugadores = new List<Player>();
         textoRonda.text += ronda;
+        this.textopuntajeGlobal = GameObject.Find("PuntajeGlobal").GetComponent<TextMeshProUGUI>();
         ResetearJugadores();
-        
-        
+        AgregarTipoCarta();
+        ActualizarPuntaje();
+        coroutine = StartCoroutine(ActivarReloj());
+        StopCoroutine(coroutine);
 
+    }
+
+    public void ActualizarPuntaje()
+    {
+        this.textopuntajeGlobal.text = "Puntaje Global: " + this.puntajeGlobal;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    void AgregarTipoCarta()
+    {
+        this.ListaDecartas = new List<GameObject>();
+
+        foreach (Transform hijo in this.cartas.transform)
+        {
+
+            ListaDecartas.Add(hijo.gameObject);
+
+        }
+
+    }
+
+    bool[] vectorComprobacionDados = new bool[3];
+    //Añado 2
+    public void SumarPuntaje()
+    {
+        puntajeGlobal += 4;
+        ActualizarPuntaje();
+        if (puntajeGlobal > 64 && vectorComprobacionDados[0]==false) {
+            playerAntivirus.AgregarDadosAdicionales();
+            vectorComprobacionDados[0] = true;
+        }else if (puntajeGlobal > 79 && vectorComprobacionDados[1] == false)
+        {
+            playerAntivirus.AgregarDadosAdicionales();
+            vectorComprobacionDados[1] = true;
+        }else if (puntajeGlobal > 89 && vectorComprobacionDados[2] == false)
+        {
+            playerAntivirus.AgregarDadosAdicionales();
+            vectorComprobacionDados[2] = true;
+        }
+        if (puntajeGlobal > 99)
+        {
+            FinDeJuego();
+        }
+    }
+
+    //Retiro 2
+    public void QuitarPuntaje()
+    {
+        puntajeGlobal -= 2;
+        ActualizarPuntaje();
     }
 
 
@@ -216,6 +291,10 @@ public class ControladorPrincipal : MonoBehaviour
 
     public void RealizarJugada()
     {
+        panelJugadaAntivirus.SetActive(false);
+        textoActivo.SetActive(false);
+        textoActivo = textosDeTurnos[6];
+        textoActivo.SetActive(true);
         ObtenerJugada();
         if (jugadorActual.GetComponent<PlayerVirus>() != null)
         {
@@ -232,7 +311,6 @@ public class ControladorPrincipal : MonoBehaviour
     {
         textoActivo.SetActive(false);
         ObtenerJugador();
-        print(jugadorActual.gameObject.name);
         if (jugadorActual.GetComponent<PlayerVirus>() != null)
         {
             panelJugadaVirus.SetActive(true);
@@ -246,6 +324,8 @@ public class ControladorPrincipal : MonoBehaviour
 
 
         }
+        StopCoroutine(coroutine);
+        this.coroutine = StartCoroutine(ActivarReloj());
 
         switch (jugadorActual.gameObject.name)
         {
@@ -265,8 +345,7 @@ public class ControladorPrincipal : MonoBehaviour
                 textoActivo = textosDeTurnos[4];
                 textoActivo.SetActive(true);
                 break;
-
-            default:
+            case "JugadorAntivirus":
                 textoActivo = textosDeTurnos[5];
                 textoActivo.SetActive(true);
                 break;
@@ -290,23 +369,32 @@ public class ControladorPrincipal : MonoBehaviour
         
     }
 
+    
     public IEnumerator EsperaDeJugada()
     {
+        StopCoroutine(coroutine);
         for (int i = 0; i < 8; i++)
         {
-            RealizarJugada();
-            yield return new WaitForSeconds(15f);
-            print(i + "EsperaJugador" + jugadorActual.gameObject.name);
-            
-            
+            RealizarJugada();           
+            yield return new WaitForSeconds(8.6f);
         }
-        yield return new WaitForSeconds(1f);
-
+        
         
 
+        textoActivo.SetActive(false);
+        yield return new WaitForSeconds(1f);
+
+        if (this.ronda <  1)
+        {
+            FinDeJuego();
+        }
+
         ronda--;
-        yield return new WaitForSeconds(5f);
+        textoActivo = textosDeTurnos[0];
+        textoActivo.SetActive(true);
+        yield return new WaitForSeconds(3f);
         ResetearJugadores();
+        
         textoRonda.text = textoRonda.text.Substring(0, textoRonda.text.Length - 2)+ronda;
         Jugada();
     }
@@ -316,7 +404,6 @@ public class ControladorPrincipal : MonoBehaviour
     {
         if (!verificarPrimerTurno)
         {
-            print("Aca entra");
             posicionesIniciales = new List<Vector3>();
             foreach (var item in listaJugadores)
             {
@@ -328,8 +415,7 @@ public class ControladorPrincipal : MonoBehaviour
         }
         else
         {
-            print("Aca tambien?");
-            for (int i = 0; i < listaJugadores.Count; i++)
+            for (int i = 0; i < listaJugadores.Count-1; i++)
             {
                 listaJugadores[i].transform.position = posicionesIniciales[i];
             }
@@ -337,7 +423,55 @@ public class ControladorPrincipal : MonoBehaviour
         
     }
 
+    public IEnumerator ActivarReloj()
+    {
+        reloj = 150;
+        while (true)
+        {
+            textoReloj.text = ((int)(reloj / 60)).ToString("00") + ":" + ((int)(reloj % 60)).ToString("00");
+            reloj--;
+            if (reloj < 1)
+            {
+                //llamar a funcion
+            }
+            yield return new WaitForSeconds(1f);
+        }
 
+    }
 
+    public Transform[] ObtenerVirus()
+    {
+        Transform[] transformsVirus = new Transform[listaJugadores.Count-1];
+
+        for (int i = 0; i < listaJugadores.Count-1; i++)
+        {
+            transformsVirus[i] = listaJugadores[i].transform;
+        }
+
+        return transformsVirus;
+    }
+
+    public Transform ObtenerAntivirus()
+    {
+        return listaJugadores[listaJugadores.Count-1].transform;
+    }
+
+    public void FinDeJuego()
+    {
+        StopAllCoroutines();
+        cartas.SetActive(false);
+        textoActivo.SetActive(false);
+        if (ronda < 1)
+        {
+            
+            textoVictoriaAntivirus.gameObject.SetActive(true);
+            
+        }
+        else
+        {
+            textoVictoriaVirus.gameObject.SetActive(true);
+            
+        }
+    }
 
 }
