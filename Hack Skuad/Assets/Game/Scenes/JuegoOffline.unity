@@ -7015,6 +7015,8 @@ MonoBehaviour:
   ListaDecartas: []
   puntajeGlobal: 0
   terminarJugada: 0
+  textoVictoriaVirus: {fileID: 0}
+  textoVictoriaAntivirus: {fileID: 0}
 --- !u!4 &590852538
 Transform:
   m_ObjectHideFlags: 0
@@ -7037,7 +7039,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 85b2c99d9291d074db8265e5e98e18f0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 73cfa6c8954a3dc41b34a16aaef9011f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
